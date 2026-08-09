@@ -183,6 +183,7 @@ export default function ResumePage() {
       <SiteHeader label="Resume" prefix="class " suffix=" (exp)" />
 
       <section className={styles.intro} aria-labelledby="resume-title">
+        <a className={styles.returnLink} href="/">↩ return</a>
         <p className={styles.kicker}>resume</p>
         <h1 id="resume-title">I build, lead, and ship.</h1>
         <p className={styles.copy}>
