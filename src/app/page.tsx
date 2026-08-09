@@ -94,7 +94,7 @@ export default function Home() {
       <section className={styles.workSection} id="work" aria-labelledby="work-title">
         <div className={styles.sectionHeading}>
           <p>// selected work</p>
-          <h1 id="work-title">Projects</h1>
+          <h1 id="work-title">Professional Work</h1>
         </div>
 
         <div className={styles.projectRow}>
