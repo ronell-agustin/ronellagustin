@@ -33,11 +33,10 @@ const projects = [
 ];
 
 const explorerItems = [
-  { label: "work", href: "#work", type: "folder", accent: "yellow" },
+  { label: "work", href: "/work", type: "folder", accent: "yellow" },
   { label: "portfolio.tsx", href: "/portfolio", type: "file", accent: "blue" },
   { label: "resume.json", href: "/resume", type: "file", accent: "yellow" },
-  { label: "about.md", href: "#about", type: "file", accent: "blue" },
-  { label: "contact.ts", href: "#contact", type: "file", accent: "blue" },
+  { label: "contact.ts", href: "mailto:ronellagustin@outlook.com", type: "file", accent: "blue" },
 ];
 
 export default function Home() {
