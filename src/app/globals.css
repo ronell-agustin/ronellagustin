@@ -576,7 +576,16 @@ footer a {
 
   .site-name::before,
   .site-name::after {
-    display: none;
+    display: inline;
+    font-size: 0.42em;
+  }
+
+  .site-name::before {
+    vertical-align: top;
+  }
+
+  .site-name::after {
+    vertical-align: bottom;
   }
 
   .desktop-nav {
