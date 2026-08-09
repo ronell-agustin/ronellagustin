@@ -1,12 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #08111f;
-  --foreground: #f5f7fb;
-  --muted: #a8b3c7;
-  --panel: #101b2d;
-  --border: rgba(255, 255, 255, 0.09);
-  --accent: #65d8ef;
+  --background: #f5f3ee;
+  --foreground: #111111;
+  --muted: #67645e;
+  --border: rgba(17, 17, 17, 0.18);
 }
 
 * {
@@ -14,14 +12,13 @@
 }
 
 html {
+  scroll-behavior: smooth;
   background: var(--background);
 }
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(101, 216, 239, 0.12), transparent 32rem),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -30,129 +27,246 @@ a {
   color: inherit;
 }
 
-.shell {
-  width: min(1120px, calc(100% - 40px));
-  margin: 0 auto;
+.site-header {
+  padding: 54px 32px 30px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
 }
 
-.hero {
-  min-height: 72vh;
+.site-name {
+  display: inline-block;
+  color: var(--foreground);
+  font-size: clamp(2.3rem, 7vw, 6.4rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+  text-decoration: none;
+  text-wrap: balance;
+}
+
+.desktop-nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 34px;
+}
+
+.desktop-nav a,
+.mobile-nav a {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.desktop-nav a:hover,
+.mobile-nav a:hover {
+  color: var(--foreground);
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.section-intro,
+.text-section {
+  min-height: 62vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 72px 0;
+  padding: 72px max(32px, calc((100vw - 1180px) / 2));
+  border-bottom: 1px solid var(--border);
 }
 
-.eyebrow {
-  margin: 0 0 16px;
-  color: var(--accent);
-  font-size: 0.85rem;
+.section-label {
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-h1 {
+.section-intro h1,
+.text-section h2 {
+  max-width: 1050px;
   margin: 0;
-  font-size: clamp(3rem, 9vw, 7rem);
-  line-height: 0.95;
+  font-size: clamp(2.5rem, 6.6vw, 6rem);
+  line-height: 0.98;
   letter-spacing: -0.055em;
+  text-wrap: balance;
 }
 
-.lede {
-  max-width: 760px;
-  margin: 28px 0 0;
-  color: var(--muted);
-  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
-  line-height: 1.55;
-}
-
-.projects {
-  padding: 40px 0 110px;
-}
-
-.section-heading {
-  max-width: 760px;
-  margin-bottom: 34px;
-}
-
-.section-heading h2 {
-  margin: 0 0 18px;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.045em;
-}
-
-.section-heading > p:last-child {
-  color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.project-card {
-  min-height: 220px;
+.project-section {
+  position: relative;
+  min-height: 100svh;
   display: flex;
-  flex-direction: column;
-  padding: 26px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 18px;
+  align-items: center;
+  padding: 72px max(32px, calc((100vw - 1180px) / 2));
+  border-bottom: 1px solid var(--border);
   text-decoration: none;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease;
+  transition: background 160ms ease, color 160ms ease;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(101, 216, 239, 0.45);
+.project-section:hover,
+.project-section:focus-visible {
+  background: var(--foreground);
+  color: var(--background);
 }
 
-.project-card span {
-  color: var(--accent);
+.project-number {
+  position: absolute;
+  top: 36px;
+  left: max(32px, calc((100vw - 1180px) / 2));
+  color: var(--muted);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
+}
+
+.project-section:hover .project-number,
+.project-section:focus-visible .project-number,
+.project-section:hover .project-content p,
+.project-section:focus-visible .project-content p {
+  color: inherit;
+  opacity: 0.65;
+}
+
+.project-content p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.project-card h3 {
-  margin: 26px 0 8px;
-  font-size: 1.55rem;
-}
-
-.project-card p {
+.project-content h2 {
   margin: 0;
-  color: var(--muted);
+  font-size: clamp(3.5rem, 10.5vw, 10rem);
+  line-height: 0.84;
+  letter-spacing: -0.07em;
+  text-wrap: balance;
 }
 
-.project-card strong {
-  margin-top: auto;
-  padding-top: 28px;
-  font-size: 0.9rem;
+.project-domain {
+  display: inline-block;
+  margin-top: 34px;
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  font-weight: 600;
+}
+
+.contact-section {
+  min-height: 78vh;
+}
+
+.contact-section > a {
+  width: fit-content;
+  margin-top: 38px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 32px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+footer a {
+  text-decoration: none;
 }
 
 @media (max-width: 700px) {
-  .shell {
-    width: min(100% - 28px, 1120px);
+  .site-header {
+    padding: 38px 20px 24px;
   }
 
-  .hero {
-    min-height: 66vh;
-    padding: 48px 0;
+  .site-name {
+    font-size: clamp(2.6rem, 15vw, 4.8rem);
   }
 
-  .projects {
-    padding-bottom: 72px;
+  .desktop-nav {
+    display: none;
   }
 
-  .project-grid {
-    grid-template-columns: 1fr;
+  .mobile-nav {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin: 26px auto 0;
+  }
+
+  .mobile-nav summary {
+    width: 34px;
+    height: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav summary span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .mobile-nav nav {
+    position: absolute;
+    z-index: 10;
+    top: 38px;
+    left: 50%;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    transform: translateX(-50%);
+  }
+
+  .section-intro,
+  .text-section,
+  .project-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .section-intro {
+    min-height: 52vh;
+  }
+
+  .text-section {
+    min-height: 70vh;
+  }
+
+  .project-number {
+    left: 20px;
+    top: 26px;
+  }
+
+  .project-content h2 {
+    font-size: clamp(3.2rem, 18vw, 6rem);
+  }
+
+  footer {
+    padding: 24px 20px;
   }
 }
