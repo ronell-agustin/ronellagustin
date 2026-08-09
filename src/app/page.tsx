@@ -1,75 +1,101 @@
 const projects = [
   {
+    name: "EZDigital",
+    domain: "ezdigital-ph.com",
+    href: "https://ezdigital-ph.com",
+    type: "Web Development · Digital Marketing",
+  },
+  {
     name: "King Fandom",
     domain: "kingfandom.com",
     href: "https://kingfandom.com",
-    type: "Ecommerce / Shopify",
+    type: "Shopify · Ecommerce",
   },
   {
     name: "Prime Oral Dental Clinic",
     domain: "primeoraldentalclinic.com",
     href: "https://primeoraldentalclinic.com",
-    type: "Local business / WordPress",
+    type: "Web Development · Local Business",
   },
   {
-    name: "EZDigital",
-    domain: "ezdigital-ph.com",
-    href: "https://ezdigital-ph.com",
-    type: "Agency / Next.js",
-  },
-  {
-    name: "TheHomeBasePH",
+    name: "The Home Base PH",
     domain: "thehomebaseph.com",
     href: "https://thehomebaseph.com",
-    type: "Content platform",
-  },
-  {
-    name: "Ronell Agustin",
-    domain: "ronellagustin.com",
-    href: "https://ronellagustin.com",
-    type: "Portfolio / Resume",
+    type: "Content · Publishing",
   },
 ];
 
 export default function Home() {
   return (
     <main>
-      <section className="hero shell">
-        <p className="eyebrow">ronellagustin.com</p>
-        <h1>Ronell Agustin</h1>
-        <p className="lede">
-          Web developer, digital strategist, and technical problem-solver building
-          fast, maintainable websites and applications.
-        </p>
+      <header className="site-header" id="top">
+        <a className="site-name" href="#top" aria-label="Ronell Esteron Agustin, home">
+          Ronell Esteron Agustin
+        </a>
+
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <details className="mobile-nav">
+          <summary aria-label="Open navigation">
+            <span />
+            <span />
+            <span />
+          </summary>
+          <nav aria-label="Mobile navigation">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </details>
+      </header>
+
+      <section className="section-intro" id="work" aria-labelledby="work-title">
+        <p className="section-label">Selected work</p>
+        <h1 id="work-title">Websites I&apos;ve built, developed, or supported.</h1>
       </section>
 
-      <section className="projects shell" aria-labelledby="projects-heading">
-        <div className="section-heading">
-          <p className="eyebrow">Selected work</p>
-          <h2 id="projects-heading">Websites and digital projects.</h2>
-          <p>
-            A growing selection of production websites, client work, business
-            platforms, and personal projects I have developed or supported.
-          </p>
-        </div>
+      {projects.map((project, index) => (
+        <a
+          className="project-section"
+          href={project.href}
+          target="_blank"
+          rel="noreferrer"
+          key={project.domain}
+          aria-label={`Visit ${project.name}`}
+        >
+          <span className="project-number">0{index + 1}</span>
+          <div className="project-content">
+            <p>{project.type}</p>
+            <h2>{project.name}</h2>
+            <span className="project-domain">{project.domain} ↗</span>
+          </div>
+        </a>
+      ))}
 
-        <div className="project-grid">
-          {projects.map((project) => (
-            <a
-              className="project-card"
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              key={project.domain}
-            >
-              <span>{project.type}</span>
-              <h3>{project.name}</h3>
-              <p>{project.domain}</p>
-              <strong>Visit site ↗</strong>
-            </a>
-          ))}
-        </div>
+      <section className="text-section" id="about" aria-labelledby="about-title">
+        <p className="section-label">About</p>
+        <h2 id="about-title">
+          Developer, digital strategist, and business owner focused on practical,
+          maintainable work.
+        </h2>
       </section>
+
+      <section className="text-section contact-section" id="contact" aria-labelledby="contact-title">
+        <p className="section-label">Contact</p>
+        <h2 id="contact-title">Have something worth building?</h2>
+        <a href="https://ezdigital-ph.com" target="_blank" rel="noreferrer">
+          Work with me through EZDigital ↗
+        </a>
+      </section>
+
+      <footer>
+        <a href="#top">Ronell Esteron Agustin</a>
+        <span>© {new Date().getFullYear()}</span>
+      </footer>
     </main>
   );
 }
