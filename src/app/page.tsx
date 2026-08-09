@@ -43,7 +43,7 @@ const explorerItems = [
 export default function Home() {
   return (
     <main>
-      <SiteHeader syntax="object" />
+      <SiteHeader />
 
       <section className={styles.workspace} aria-label="Site explorer">
         <div className={styles.explorerChrome}>
