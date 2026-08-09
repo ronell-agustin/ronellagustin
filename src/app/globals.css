@@ -113,6 +113,46 @@ footer a {
   text-decoration: none;
 }
 
+.scroll-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  color: var(--syntax-property);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-floating);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.25rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 140ms ease, transform 140ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.scroll-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover,
+.scroll-to-top:focus-visible {
+  background: var(--interactive-hover);
+  border-color: var(--border-emphasis);
+  outline: none;
+}
+
+.scroll-to-top:focus-visible {
+  box-shadow: var(--shadow-floating), 0 0 0 2px var(--interactive-primary);
+}
+
 .resume-page {
   width: min(1240px, calc(100% - 64px));
   margin: 0 auto;
@@ -293,6 +333,13 @@ footer a {
   footer {
     padding: 8px 12px;
     font-size: 0.68rem;
+  }
+
+  .scroll-to-top {
+    right: 18px;
+    bottom: 18px;
+    width: 42px;
+    height: 42px;
   }
 
   .resume-page {
