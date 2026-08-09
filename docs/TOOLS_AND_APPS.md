@@ -53,6 +53,7 @@ It is intentionally broader than a one-page resume. The public resume can pull t
 
 - **WordPress** — Website development, maintenance, migration, optimization, and hosting administration.
 - **Elementor / Elementor Pro** — Custom WordPress page design and client-site implementation.
+- **WooCommerce** — WordPress ecommerce implementation, product/catalog workflows, checkout configuration, and payment-gateway integration planning.
 - **Shopify** — Ecommerce storefront development and customization.
 - **Shopify Themes / Liquid-oriented workflows** — Theme customization, reusable templates, product/variant structures, and merchant workflows.
 - **Headless / custom frontend migrations** — Replacing plugin-heavy CMS implementations with leaner custom frontend stacks where appropriate.
@@ -216,6 +217,7 @@ Typical testing begins with a small number of virtual users and increases gradua
 
 - WordPress
 - Elementor Pro
+- WooCommerce
 - MariaDB / MySQL
 - Cloudways
 - Cloudflare
@@ -225,8 +227,10 @@ Typical testing begins with a small number of virtual users and increases gradua
 ### Ecommerce
 
 - Shopify
-- Theme customization
+- WooCommerce
+- Product and catalog architecture
 - Product and variant architecture
+- Checkout/payment workflow configuration
 - Reusable landing-page templates
 - GitHub-backed development workflow
 
@@ -246,6 +250,6 @@ For a concise resume, prioritize the technologies that directly support the targ
 
 A strong general-purpose technical summary would emphasize:
 
-**Next.js, React, TypeScript, JavaScript, HTML/CSS, Python, PostgreSQL, Supabase, Prisma, Git/GitHub, Vercel, Cloudflare, WordPress, Shopify, Docker, Linux, k6, GA4, responsive UI/UX, API integration, and full-stack web development.**
+**Next.js, React, TypeScript, JavaScript, HTML/CSS, Python, PostgreSQL, Supabase, Prisma, Git/GitHub, Vercel, Cloudflare, WordPress, WooCommerce, Shopify, Docker, Linux, k6, GA4, responsive UI/UX, API integration, and full-stack web development.**
 
 This inventory should be updated whenever a tool becomes part of a real project, production workflow, or meaningful training experience.
