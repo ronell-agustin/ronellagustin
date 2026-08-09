@@ -8,6 +8,26 @@
   border-bottom: 1px solid var(--border);
 }
 
+.returnLink {
+  display: inline-block;
+  margin: 0 0 14px;
+  color: var(--purple);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.returnLink::before {
+  content: "↩ ";
+  color: var(--orange);
+}
+
+.returnLink:hover,
+.returnLink:focus-visible {
+  color: var(--yellow);
+  outline: none;
+}
+
 .kicker {
   margin: 0 0 14px;
   color: var(--green);
@@ -234,6 +254,11 @@
 
   .pageIntro {
     padding: 34px 0 30px;
+  }
+
+  .returnLink {
+    margin-bottom: 12px;
+    font-size: 0.68rem;
   }
 
   .pageIntro h1 {
