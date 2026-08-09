@@ -1,3 +1,6 @@
+import SiteHeader from "../SiteHeader";
+import styles from "./resume.module.css";
+
 const experience = [
   {
     title: "Full-stack Developer",
@@ -176,109 +179,102 @@ const skills = [
 
 export default function ResumePage() {
   return (
-    <main className="resume-page">
-      <header className="resume-header">
-        <a className="resume-back" href="/">← portfolio.tsx</a>
-        <div>
-          <p className="resume-kicker">// resume.ts</p>
-          <h1>Ronell Agustin</h1>
-          <p className="resume-intro">
-            Full-stack developer and U.S. Army veteran with experience across React,
-            .NET, SQL, APIs, business operations, technical leadership, and creative
-            problem-solving.
-          </p>
-        </div>
-        <a
-          className="resume-linkedin"
-          href="https://www.linkedin.com/in/ronellagustin"
-          target="_blank"
-          rel="noreferrer"
-        >
-          linkedin ↗
-        </a>
-      </header>
+    <>
+      <SiteHeader label="Resume" prefix="class " suffix=" (exp)" />
 
-      <section className="resume-section" aria-labelledby="experience-title">
-        <div className="resume-section-heading">
-          <p className="section-label">// experience[]</p>
-          <h2 id="experience-title">Professional experience.</h2>
-        </div>
-
-        <div className="experience-list">
-          {experience.map((role, index) => (
-            <details className="experience-item" key={`${role.company}-${role.title}`} open={index === 0}>
-              <summary>
-                <span className="experience-index">[{String(index).padStart(2, "0")}]</span>
-                <span className="experience-heading">
-                  <strong>{role.title}</strong>
-                  <span>{role.company}</span>
-                </span>
-                <span className="experience-period">{role.period}</span>
-                <span className="experience-toggle" aria-hidden="true">+</span>
-              </summary>
-
-              <div className="experience-body">
-                <div className="experience-meta">
-                  <span>company: &quot;{role.company}&quot;</span>
-                  <span>location: &quot;{role.location}&quot;</span>
-                  <span>period: &quot;{role.period}&quot;</span>
-                </div>
-                <div className="experience-copy">
-                  <p>{role.summary}</p>
-                  <ul>
-                    {role.details.map((detail) => (
-                      <li key={detail}>{detail}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </details>
-          ))}
-        </div>
+      <section className={styles.intro} aria-labelledby="resume-title">
+        <p className={styles.kicker}>resume</p>
+        <h1 id="resume-title">Experience, education, and technical range.</h1>
+        <p className={styles.copy}>
+          Full-stack developer and U.S. Army veteran with experience across React,
+          .NET, SQL, APIs, business operations, technical leadership, and creative
+          problem-solving.
+        </p>
       </section>
 
-      <section className="resume-section" aria-labelledby="education-title">
-        <div className="resume-section-heading">
-          <p className="section-label">// education[]</p>
-          <h2 id="education-title">Education.</h2>
-        </div>
+      <main className="resume-page">
+        <section className="resume-section" aria-labelledby="experience-title">
+          <div className="resume-section-heading">
+            <p className="section-label">// experience[]</p>
+            <h2 id="experience-title">Professional experience.</h2>
+          </div>
 
-        <div className="experience-list">
-          {education.map((item, index) => (
-            <details className="experience-item" key={item.school}>
-              <summary>
-                <span className="experience-index">[{String(index).padStart(2, "0")}]</span>
-                <span className="experience-heading">
-                  <strong>{item.school}</strong>
-                  <span>{item.degree}</span>
-                </span>
-                <span className="experience-period">{item.period}</span>
-                <span className="experience-toggle" aria-hidden="true">+</span>
-              </summary>
-              <div className="experience-body">
-                <div className="experience-meta">
-                  <span>period: &quot;{item.period}&quot;</span>
-                </div>
-                <div className="experience-copy">
-                  <p>{item.degree}</p>
-                  <ul>
-                    <li>{item.focus}</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
-          ))}
-        </div>
-      </section>
+          <div className="experience-list">
+            {experience.map((role, index) => (
+              <details className="experience-item" key={`${role.company}-${role.title}`} open={index === 0}>
+                <summary>
+                  <span className="experience-index">[{String(index).padStart(2, "0")}]</span>
+                  <span className="experience-heading">
+                    <strong>{role.title}</strong>
+                    <span>{role.company}</span>
+                  </span>
+                  <span className="experience-period">{role.period}</span>
+                  <span className="experience-toggle" aria-hidden="true">+</span>
+                </summary>
 
-      <section className="resume-bottom">
-        <p>{skills.join(" · ")}</p>
-        <div>
-          <a href="mailto:ronellagustin@outlook.com">email ↗</a>
-          {" · "}
-          <a href="tel:+18182313066">phone ↗</a>
-        </div>
-      </section>
-    </main>
+                <div className="experience-body">
+                  <div className="experience-meta">
+                    <span>company: &quot;{role.company}&quot;</span>
+                    <span>location: &quot;{role.location}&quot;</span>
+                    <span>period: &quot;{role.period}&quot;</span>
+                  </div>
+                  <div className="experience-copy">
+                    <p>{role.summary}</p>
+                    <ul>
+                      {role.details.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="resume-section" aria-labelledby="education-title">
+          <div className="resume-section-heading">
+            <p className="section-label">// education[]</p>
+            <h2 id="education-title">Education.</h2>
+          </div>
+
+          <div className="experience-list">
+            {education.map((item, index) => (
+              <details className="experience-item" key={item.school}>
+                <summary>
+                  <span className="experience-index">[{String(index).padStart(2, "0")}]</span>
+                  <span className="experience-heading">
+                    <strong>{item.school}</strong>
+                    <span>{item.degree}</span>
+                  </span>
+                  <span className="experience-period">{item.period}</span>
+                  <span className="experience-toggle" aria-hidden="true">+</span>
+                </summary>
+                <div className="experience-body">
+                  <div className="experience-meta">
+                    <span>period: &quot;{item.period}&quot;</span>
+                  </div>
+                  <div className="experience-copy">
+                    <p>{item.degree}</p>
+                    <ul>
+                      <li>{item.focus}</li>
+                    </ul>
+                  </div>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="resume-bottom">
+          <p>{skills.join(" · ")}</p>
+          <div>
+            <a href="mailto:ronellagustin@outlook.com">email ↗</a>
+            {" · "}
+            <a href="tel:+18182313066">phone ↗</a>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
