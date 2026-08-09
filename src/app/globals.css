@@ -192,6 +192,212 @@ footer a {
   text-decoration: none;
 }
 
+.resume-page {
+  width: min(1240px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.resume-header {
+  min-height: 72svh;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 6fr) 1fr;
+  align-items: start;
+  gap: 40px;
+  padding: 42px 0 72px;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-back,
+.resume-linkedin {
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.resume-linkedin {
+  text-align: right;
+}
+
+.resume-kicker {
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.resume-header h1 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.075em;
+  text-wrap: balance;
+}
+
+.resume-intro {
+  max-width: 780px;
+  margin: 38px 0 0;
+  color: var(--muted);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  line-height: 1.55;
+}
+
+.resume-section {
+  padding: 100px 0 130px;
+}
+
+.resume-section-heading {
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+  gap: 40px;
+  margin-bottom: 52px;
+}
+
+.resume-section-heading .section-label {
+  margin: 8px 0 0;
+}
+
+.resume-section-heading h2 {
+  max-width: 850px;
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.experience-list {
+  border-top: 1px solid var(--border);
+}
+
+.experience-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-item summary {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 170px 36px;
+  align-items: center;
+  gap: 24px;
+  min-height: 124px;
+  padding: 22px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.experience-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.experience-item summary:hover .experience-heading strong {
+  opacity: 0.62;
+}
+
+.experience-index,
+.experience-period {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.experience-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.experience-heading strong {
+  font-size: clamp(1.4rem, 2.8vw, 2.7rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  transition: opacity 140ms ease;
+}
+
+.experience-heading > span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.experience-period {
+  text-align: right;
+}
+
+.experience-toggle {
+  justify-self: end;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.experience-item[open] .experience-toggle {
+  transform: rotate(45deg);
+}
+
+.experience-body {
+  display: grid;
+  grid-template-columns: 1.35fr 3fr;
+  gap: 56px;
+  padding: 4px 36px 58px 96px;
+}
+
+.experience-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.experience-copy {
+  max-width: 720px;
+}
+
+.experience-copy > p {
+  margin: 0 0 24px;
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.55;
+}
+
+.experience-copy ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.resume-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 34px 0 48px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.resume-bottom p {
+  margin: 0;
+}
+
+.resume-bottom a {
+  flex: 0 0 auto;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 @media (max-width: 700px) {
   .site-header {
     padding: 30px 18px 22px;
@@ -328,6 +534,119 @@ footer a {
     padding: 22px 18px;
     font-size: 0.72rem;
   }
+
+  .resume-page {
+    width: min(100% - 36px, 1240px);
+  }
+
+  .resume-header {
+    min-height: auto;
+    grid-template-columns: 1fr auto;
+    gap: 26px 20px;
+    padding: 24px 0 56px;
+  }
+
+  .resume-header > div {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .resume-back {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .resume-linkedin {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .resume-kicker {
+    margin-bottom: 20px;
+  }
+
+  .resume-header h1 {
+    font-size: clamp(3rem, 15vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .resume-intro {
+    margin-top: 28px;
+    font-size: 1.05rem;
+  }
+
+  .resume-section {
+    padding: 64px 0 84px;
+  }
+
+  .resume-section-heading {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 34px;
+  }
+
+  .resume-section-heading .section-label {
+    margin: 0;
+  }
+
+  .resume-section-heading h2 {
+    font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+
+  .experience-item summary {
+    grid-template-columns: 34px minmax(0, 1fr) 28px;
+    gap: 12px;
+    min-height: 104px;
+    padding: 20px 0;
+  }
+
+  .experience-index {
+    align-self: start;
+    padding-top: 4px;
+    font-size: 0.65rem;
+  }
+
+  .experience-heading strong {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+    line-height: 1.05;
+  }
+
+  .experience-heading > span {
+    font-size: 0.82rem;
+  }
+
+  .experience-period {
+    display: none;
+  }
+
+  .experience-toggle {
+    font-size: 1.6rem;
+  }
+
+  .experience-body {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 0 0 42px 46px;
+  }
+
+  .experience-meta {
+    gap: 4px;
+    font-size: 0.75rem;
+  }
+
+  .experience-copy > p {
+    font-size: 1rem;
+  }
+
+  .experience-copy ul {
+    font-size: 0.9rem;
+  }
+
+  .resume-bottom {
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px 0 36px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -355,5 +674,13 @@ footer a {
   footer {
     flex-direction: column;
     gap: 8px;
+  }
+
+  .resume-header h1 {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+  }
+
+  .experience-body {
+    padding-left: 34px;
   }
 }
