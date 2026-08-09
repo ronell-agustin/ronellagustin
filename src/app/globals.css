@@ -51,8 +51,7 @@ a {
   border-bottom: 1px solid var(--border);
 }
 
-.site-header::before {
-  content: "ronellagustin.com  ×";
+.header-tab {
   position: absolute;
   top: 0;
   left: 0;
@@ -62,12 +61,17 @@ a {
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--background);
   font-size: 0.72rem;
+  text-decoration: none;
+}
+
+.header-tab:hover {
+  color: var(--blue);
 }
 
 .site-name {
   display: inline-block;
   color: var(--cyan);
-  font-size: clamp(2.3rem, 7vw, 6.4rem);
+  font-size: clamp(2.3rem, 7vw, 5.9rem);
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.055em;
@@ -78,14 +82,14 @@ a {
 .site-name::before {
   content: "const ";
   color: var(--blue);
-  font-size: 0.34em;
+  font-size: 2.18rem;
   vertical-align: top;
 }
 
 .site-name::after {
   content: " = {}";
   color: var(--yellow);
-  font-size: 0.34em;
+  font-size: 2.18rem;
   vertical-align: bottom;
 }
 
@@ -106,6 +110,10 @@ a {
   text-decoration: none;
   text-transform: lowercase;
   border: 1px solid transparent;
+}
+
+.desktop-nav a {
+  font-size: 1.03rem;
 }
 
 .desktop-nav a::before,
@@ -554,7 +562,7 @@ footer a {
     padding: 46px 18px 22px;
   }
 
-  .site-header::before {
+  .header-tab {
     padding: 8px 12px;
     font-size: 0.64rem;
   }
