@@ -16,9 +16,9 @@
   right: 0;
   bottom: 0;
   display: flex;
-  background: var(--background);
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
+  background: var(--surface-page);
+  border-top: 1px solid var(--border-default);
+  border-left: 1px solid var(--border-default);
 }
 
 .socialDock a {
@@ -26,9 +26,9 @@
   height: 36px;
   display: grid;
   place-items: center;
-  color: var(--muted);
+  color: var(--text-secondary);
   text-decoration: none;
-  border-left: 1px solid var(--border);
+  border-left: 1px solid var(--border-default);
 }
 
 .socialDock a:first-child {
@@ -37,8 +37,8 @@
 
 .socialDock a:hover,
 .socialDock a:focus-visible {
-  color: var(--blue);
-  background: var(--selection);
+  color: var(--syntax-keyword);
+  background: var(--interactive-hover);
   outline: none;
 }
 
@@ -51,9 +51,9 @@
 .workspace {
   width: min(1180px, calc(100% - 64px));
   margin: 56px auto 0;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-panel);
 }
 
 .explorerChrome {
@@ -62,9 +62,9 @@
   align-items: center;
   min-height: 38px;
   padding: 0 12px;
-  background: var(--panel-alt);
-  color: var(--muted);
-  border-bottom: 1px solid var(--border);
+  background: var(--surface-recessed);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-default);
   font-size: 0.72rem;
 }
 
@@ -81,9 +81,9 @@
   align-items: center;
   min-height: 34px;
   padding: 0 12px;
-  color: var(--foreground);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
   font-size: 0.74rem;
   letter-spacing: 0.03em;
 }
@@ -91,7 +91,7 @@
 .explorerTree {
   grid-column: 1;
   padding: 8px 0 18px;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--border-default);
 }
 
 .explorerTree a {
@@ -101,14 +101,14 @@
   gap: 8px;
   min-height: 34px;
   padding: 0 14px 0 28px;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: 0.84rem;
   text-decoration: none;
 }
 
 .explorerTree a:hover,
 .explorerTree a:focus-visible {
-  background: var(--selection);
+  background: var(--interactive-hover);
   outline: none;
 }
 
@@ -118,7 +118,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: #333337;
+  background: var(--border-emphasis);
 }
 
 .fileIcon {
@@ -129,18 +129,18 @@
 }
 
 .fileYellow {
-  color: var(--yellow);
+  color: var(--syntax-property);
 }
 
 .fileBlue {
-  color: var(--blue);
+  color: var(--syntax-keyword);
 }
 
 .editorPreview {
   grid-column: 2;
   grid-row: 1 / span 2;
   min-width: 0;
-  background: var(--background);
+  background: var(--surface-page);
 }
 
 .editorTabs {
@@ -150,14 +150,14 @@
   gap: 18px;
   min-height: 36px;
   padding: 0 12px;
-  background: var(--panel-alt);
-  color: var(--muted);
-  border-bottom: 1px solid var(--border);
+  background: var(--surface-recessed);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-default);
   font-size: 0.72rem;
 }
 
 .activeTab {
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
 .codePreview {
@@ -176,20 +176,20 @@
 }
 
 .lineNumber {
-  color: #5d5d5d;
+  color: var(--text-tertiary);
   user-select: none;
 }
 
 .codePurple {
-  color: var(--purple);
+  color: var(--syntax-control);
 }
 
 .codeYellow {
-  color: var(--orange);
+  color: var(--syntax-string);
 }
 
 .comment {
-  color: var(--green);
+  color: var(--syntax-comment);
 }
 
 .workSection {
@@ -208,13 +208,13 @@
 
 .sectionHeading p {
   margin: 0;
-  color: var(--green);
+  color: var(--syntax-comment);
   font-size: 0.78rem;
 }
 
 .sectionHeading h1 {
   margin: 0;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: clamp(2rem, 4.2vw, 4.4rem);
   font-weight: 600;
   letter-spacing: -0.045em;
@@ -227,7 +227,7 @@
   overflow-x: auto;
   padding-bottom: 10px;
   scrollbar-width: thin;
-  scrollbar-color: #424242 var(--panel-alt);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 .projectCard {
@@ -235,8 +235,8 @@
   display: flex;
   flex-direction: column;
   min-height: 310px;
-  background: var(--panel);
-  border: 1px solid var(--border);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-default);
   text-decoration: none;
   transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
 }
@@ -244,8 +244,8 @@
 .projectCard:hover,
 .projectCard:focus-visible {
   transform: translateY(-3px);
-  background: var(--selection);
-  border-color: var(--status);
+  background: var(--interactive-hover);
+  border-color: var(--interactive-primary);
   outline: none;
 }
 
@@ -255,9 +255,9 @@
   align-items: center;
   min-height: 38px;
   padding: 0 12px;
-  background: var(--panel-alt);
-  color: var(--muted);
-  border-bottom: 1px solid var(--border);
+  background: var(--surface-recessed);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-default);
   font-size: 0.68rem;
 }
 
@@ -268,14 +268,14 @@
 
 .cardBody p {
   margin: 0 0 14px;
-  color: var(--green);
+  color: var(--syntax-comment);
   font-size: 0.7rem;
   line-height: 1.5;
 }
 
 .cardBody h2 {
   margin: 0;
-  color: var(--cyan);
+  color: var(--syntax-type);
   font-size: clamp(1.6rem, 2.3vw, 2.5rem);
   line-height: 0.96;
   letter-spacing: -0.045em;
@@ -284,7 +284,7 @@
 .cardStack {
   display: inline-block;
   margin-top: 20px;
-  color: var(--yellow);
+  color: var(--syntax-property);
   font-size: 0.72rem;
 }
 
@@ -293,8 +293,8 @@
   justify-content: space-between;
   gap: 14px;
   padding: 12px 14px;
-  color: var(--orange);
-  border-top: 1px solid var(--border);
+  color: var(--syntax-string);
+  border-top: 1px solid var(--border-default);
   font-size: 0.7rem;
 }
 
@@ -309,36 +309,36 @@
 .infoPanel {
   min-height: 190px;
   padding: 24px;
-  background: var(--panel-alt);
-  border: 1px solid var(--border);
+  background: var(--surface-recessed);
+  border: 1px solid var(--border-default);
 }
 
 .panelLabel {
   display: block;
   margin-bottom: 26px;
-  color: var(--blue);
+  color: var(--syntax-keyword);
   font-size: 0.72rem;
 }
 
 .infoPanel p {
   margin: 0;
-  color: var(--green);
+  color: var(--syntax-comment);
   line-height: 1.7;
 }
 
 .infoPanel p span {
-  color: var(--orange);
+  color: var(--syntax-string);
 }
 
 .infoPanel a {
   display: inline-block;
   margin-top: 24px;
-  color: var(--yellow);
+  color: var(--syntax-property);
   text-decoration: none;
 }
 
 .infoPanel a:hover {
-  color: var(--blue);
+  color: var(--syntax-keyword);
 }
 
 @media (max-width: 900px) {
@@ -369,7 +369,7 @@
     position: static;
     width: fit-content;
     margin: 18px auto 0;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-default);
   }
 
   .socialDock a {
@@ -406,7 +406,7 @@
   .editorPreview {
     grid-column: 1;
     grid-row: auto;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-default);
   }
 
   .codePreview {
