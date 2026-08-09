@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import styles from "./portfolio.module.css";
 
@@ -56,7 +57,7 @@ function CardContents({ item }: { item: PortfolioItem }) {
     <>
       {item.thumbnail ? (
         <div className={styles.media}>
-          <img src={item.thumbnail} alt="" loading="lazy" />
+          <Image src={item.thumbnail} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 25vw" />
           {item.source === "youtube" && <span className={styles.sourceBadge}>YouTube</span>}
         </div>
       ) : (
