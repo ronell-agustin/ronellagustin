@@ -1,0 +1,82 @@
+.header {
+  padding-bottom: 42px;
+}
+
+.name {
+  font-size: clamp(2.3rem, 6.4vw, 5.275rem);
+}
+
+.name::before,
+.name::after {
+  font-size: 1.56rem;
+}
+
+.socialDock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: var(--background);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.socialDock a {
+  width: 42px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 1px solid var(--border);
+}
+
+.socialDock a:first-child {
+  border-left: 0;
+}
+
+.socialDock a:hover,
+.socialDock a:focus-visible {
+  color: var(--blue);
+  background: var(--selection);
+  outline: none;
+}
+
+.socialDock svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding-bottom: 24px;
+  }
+
+  .name {
+    font-size: clamp(2rem, 10.5vw, 3.5rem);
+  }
+
+  .socialDock {
+    position: static;
+    width: fit-content;
+    margin: 18px auto 0;
+    border: 1px solid var(--border);
+  }
+
+  .socialDock a {
+    width: 48px;
+    height: 42px;
+  }
+
+  .socialDock svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .name {
+    font-size: clamp(1.85rem, 9.5vw, 2.5rem);
+  }
+}
