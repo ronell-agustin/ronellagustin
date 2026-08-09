@@ -184,11 +184,10 @@ export default function ResumePage() {
 
       <section className={styles.intro} aria-labelledby="resume-title">
         <p className={styles.kicker}>resume</p>
-        <h1 id="resume-title">Experience, education, and technical range.</h1>
+        <h1 id="resume-title">I build, lead, and ship.</h1>
         <p className={styles.copy}>
-          Full-stack developer and U.S. Army veteran with experience across React,
-          .NET, SQL, APIs, business operations, technical leadership, and creative
-          problem-solving.
+          My work spans software development, business operations, and military leadership —
+          turning ambiguous problems into practical systems, stronger teams, and finished work.
         </p>
       </section>
 
