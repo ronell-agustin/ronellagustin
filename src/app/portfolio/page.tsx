@@ -1,8 +1,11 @@
 import SiteHeader from "../SiteHeader";
+import { getYouTubePortfolioItems } from "../../lib/youtube";
 import PortfolioGallery from "./PortfolioGallery";
 import styles from "./portfolio.module.css";
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const youtubeItems = await getYouTubePortfolioItems();
+
   return (
     <>
       <SiteHeader label="Portfolio" prefix="const " suffix=" = []" />
@@ -18,7 +21,7 @@ export default function PortfolioPage() {
         </section>
 
         <section className={styles.content} aria-label="Creative work">
-          <PortfolioGallery />
+          <PortfolioGallery youtubeItems={youtubeItems} />
         </section>
       </main>
     </>
