@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SiteHeader from "../SiteHeader";
 import styles from "./resume.module.css";
 
@@ -183,7 +184,7 @@ export default function ResumePage() {
       <SiteHeader label="Resume" prefix="class " suffix=" (exp)" />
 
       <section className={styles.intro} aria-labelledby="resume-title">
-        <a className={styles.returnLink} href="/">↩ return</a>
+        <Link className={styles.returnLink} href="/">↩ return</Link>
         <p className={styles.kicker}>resume</p>
         <h1 id="resume-title">I build, lead, and ship.</h1>
         <p className={styles.copy}>
@@ -195,7 +196,7 @@ export default function ResumePage() {
       <main className="resume-page">
         <section className="resume-section" aria-labelledby="experience-title">
           <div className="resume-section-heading">
-            <p className="section-label">// experience[]</p>
+            <p className="section-label">{"// experience[]"}</p>
             <h2 id="experience-title">Experience.</h2>
           </div>
 
@@ -234,7 +235,7 @@ export default function ResumePage() {
 
         <section className="resume-section" aria-labelledby="education-title">
           <div className="resume-section-heading">
-            <p className="section-label">// education[]</p>
+            <p className="section-label">{"// education[]"}</p>
             <h2 id="education-title">Education.</h2>
           </div>
 
