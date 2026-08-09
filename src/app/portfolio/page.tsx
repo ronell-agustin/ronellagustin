@@ -9,6 +9,7 @@ export default function PortfolioPage() {
 
       <main className={styles.page}>
         <section className={styles.pageIntro} aria-labelledby="portfolio-title">
+          <a className={styles.returnLink} href="/">return</a>
           <p className={styles.kicker}>portfolio[]</p>
           <h1 id="portfolio-title">Art, photography, and videography.</h1>
           <p className={styles.intro}>
