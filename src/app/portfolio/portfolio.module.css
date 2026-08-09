@@ -140,28 +140,68 @@
 
 .card {
   min-width: 0;
+  display: block;
+  overflow: hidden;
+  color: inherit;
   background: var(--surface-recessed);
   border: 1px solid var(--border-default);
-  transition: border-color 120ms ease, background 120ms ease;
+  text-decoration: none;
+  transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
 }
 
-.card:hover {
+.card:hover,
+.card:focus-visible {
   background: var(--interactive-hover);
   border-color: var(--border-emphasis);
+  outline: none;
+}
+
+.card[href]:hover,
+.card[href]:focus-visible {
+  transform: translateY(-2px);
+}
+
+.media,
+.placeholder {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.media {
+  background: var(--surface-page);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.sourceBadge {
+  position: absolute;
+  right: 9px;
+  bottom: 9px;
+  padding: 4px 6px;
+  color: var(--text-primary);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-default);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .placeholder {
-  position: relative;
-  aspect-ratio: 4 / 3;
   display: grid;
   place-items: center;
-  overflow: hidden;
   background:
     linear-gradient(var(--border-default) 1px, transparent 1px),
     linear-gradient(90deg, var(--border-default) 1px, transparent 1px),
     var(--surface-page);
   background-size: 28px 28px;
-  border-bottom: 1px solid var(--border-default);
 }
 
 .placeholder::before {
@@ -200,6 +240,10 @@
   padding: 14px 14px 0;
 }
 
+.cardMeta > div {
+  min-width: 0;
+}
+
 .cardMeta p {
   margin: 0 0 6px;
   color: var(--syntax-comment);
@@ -217,6 +261,7 @@
   font-size: clamp(1rem, 1.35vw, 1.35rem);
   line-height: 1.1;
   letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
 }
 
 .index {
