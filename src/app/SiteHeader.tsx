@@ -10,8 +10,7 @@ const navigation = [
   { label: "work", href: "/#work" },
   { label: "portfolio", href: "/portfolio" },
   { label: "resume", href: "/resume" },
-  { label: "about", href: "/#about" },
-  { label: "contact", href: "/#contact" },
+  { label: "contact", href: "mailto:ronellagustin@outlook.com" },
 ];
 
 function LinkedInIcon() {
