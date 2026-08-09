@@ -1,0 +1,68 @@
+.intro {
+  width: min(1240px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 52px 0 44px;
+  border-bottom: 1px solid var(--border);
+}
+
+.kicker {
+  margin: 0 0 14px;
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.kicker::before {
+  content: "const ";
+  color: var(--blue);
+}
+
+.kicker::after {
+  content: " = []";
+  color: var(--yellow);
+}
+
+.intro h1 {
+  max-width: 900px;
+  margin: 0;
+  color: var(--foreground);
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.copy {
+  max-width: 780px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1.5vw, 1.18rem);
+  line-height: 1.65;
+}
+
+.copy::before {
+  content: "/* ";
+  color: var(--green);
+}
+
+.copy::after {
+  content: " */";
+  color: var(--green);
+}
+
+@media (max-width: 700px) {
+  .intro {
+    width: min(100% - 36px, 1240px);
+    padding: 34px 0 30px;
+  }
+
+  .intro h1 {
+    font-size: clamp(1.8rem, 8.5vw, 2.8rem);
+  }
+
+  .copy {
+    margin-top: 18px;
+    font-size: 0.95rem;
+  }
+}
