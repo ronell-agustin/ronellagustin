@@ -1,5 +1,6 @@
 import styles from "./home-header.module.css";
 
+// Keep header-specific presentation isolated from the global editor theme.
 const projects = [
   {
     name: "EZDigital",
