@@ -1,20 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1e1e1e;
-  --foreground: #d4d4d4;
-  --muted: #858585;
-  --border: #2d2d30;
-  --panel: #252526;
-  --panel-alt: #181818;
-  --selection: #2a2d2e;
-  --blue: #569cd6;
-  --cyan: #4ec9b0;
-  --green: #6a9955;
-  --yellow: #dcdcaa;
-  --orange: #ce9178;
-  --purple: #c586c0;
-  --status: #007acc;
+  /* Palette primitives: color values live only here. */
+  --palette-editor-bg: #1e1e1e;
+  --palette-editor-text: #d4d4d4;
+  --palette-muted: #858585;
+  --palette-border: #2d2d30;
+  --palette-border-emphasis: #3c3c3c;
+  --palette-panel: #252526;
+  --palette-panel-deep: #181818;
+  --palette-hover: #2a2d2e;
+  --palette-selection: #264f78;
+  --palette-line-number: #5d5d5d;
+  --palette-scrollbar: #424242;
+  --palette-blue: #569cd6;
+  --palette-cyan: #4ec9b0;
+  --palette-green: #6a9955;
+  --palette-yellow: #dcdcaa;
+  --palette-orange: #ce9178;
+  --palette-purple: #c586c0;
+  --palette-status: #007acc;
+  --palette-white: #ffffff;
+  --palette-shadow-strong: rgba(0, 0, 0, 0.35);
+  --palette-shadow-soft: rgba(0, 0, 0, 0.22);
+
+  /* Surfaces */
+  --surface-page: var(--palette-editor-bg);
+  --surface-panel: var(--palette-panel);
+  --surface-recessed: var(--palette-panel-deep);
+  --surface-hover: var(--palette-hover);
+  --surface-selection: var(--palette-selection);
+
+  /* Text */
+  --text-primary: var(--palette-editor-text);
+  --text-secondary: var(--palette-muted);
+  --text-tertiary: var(--palette-line-number);
+  --text-inverse: var(--palette-white);
+
+  /* Borders and structure */
+  --border-default: var(--palette-border);
+  --border-emphasis: var(--palette-border-emphasis);
+
+  /* Syntax-inspired accents */
+  --syntax-keyword: var(--palette-blue);
+  --syntax-type: var(--palette-cyan);
+  --syntax-comment: var(--palette-green);
+  --syntax-property: var(--palette-yellow);
+  --syntax-string: var(--palette-orange);
+  --syntax-control: var(--palette-purple);
+
+  /* Interactive and status */
+  --interactive-primary: var(--palette-status);
+  --interactive-hover: var(--surface-hover);
+  --selection-background: var(--surface-selection);
+  --selection-text: var(--text-inverse);
+
+  /* Effects and chrome */
+  --shadow-floating: 0 12px 34px var(--palette-shadow-strong);
+  --shadow-panel: 0 20px 60px var(--palette-shadow-soft);
+  --scrollbar-thumb: var(--palette-scrollbar);
+  --scrollbar-track: var(--surface-recessed);
 }
 
 * {
@@ -23,274 +68,35 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--background);
+  background: var(--surface-page);
 }
 
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--surface-page);
+  color: var(--text-primary);
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: #264f78;
-  color: #fff;
+  background: var(--selection-background);
+  color: var(--selection-text);
 }
 
 a {
   color: inherit;
 }
 
-.site-header {
-  position: relative;
-  padding: 52px 32px 30px;
-  text-align: center;
-  background: var(--panel-alt);
-  border-bottom: 1px solid var(--border);
-}
-
-.header-tab {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 16px;
-  background: var(--background);
-  color: var(--foreground);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--background);
-  font-size: 0.72rem;
-  text-decoration: none;
-}
-
-.header-tab:hover {
-  color: var(--blue);
-}
-
-.site-name {
-  display: inline-block;
-  color: var(--cyan);
-  font-size: clamp(2.3rem, 7vw, 5.9rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.055em;
-  text-decoration: none;
-  text-wrap: balance;
-}
-
-.site-name::before {
-  content: "const ";
-  color: var(--blue);
-  font-size: 2.18rem;
-  vertical-align: top;
-}
-
-.site-name::after {
-  content: " = {}";
-  color: var(--yellow);
-  font-size: 2.18rem;
-  vertical-align: bottom;
-}
-
-.desktop-nav {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 34px;
-}
-
-.desktop-nav a,
-.mobile-nav a {
-  padding: 8px 12px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-decoration: none;
-  text-transform: lowercase;
-  border: 1px solid transparent;
-}
-
-.desktop-nav a {
-  font-size: 1.03rem;
-}
-
-.desktop-nav a::before,
-.mobile-nav a::before {
-  content: "./";
-  color: var(--green);
-}
-
-.desktop-nav a:hover,
-.mobile-nav a:hover {
-  color: var(--foreground);
-  background: var(--selection);
-  border-color: var(--border);
-}
-
-.mobile-nav {
-  display: none;
-}
-
-.section-intro,
-.text-section {
-  min-height: 62vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 72px max(32px, calc((100vw - 1180px) / 2));
-  border-bottom: 1px solid var(--border);
-}
-
 .section-label {
   margin: 0 0 28px;
-  color: var(--green);
+  color: var(--syntax-comment);
   font-size: 0.76rem;
   font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 .section-label::before {
   content: "// ";
-}
-
-.section-intro h1,
-.text-section h2 {
-  max-width: 1050px;
-  margin: 0;
-  color: var(--foreground);
-  font-size: clamp(2.5rem, 6.2vw, 5.7rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.045em;
-  text-wrap: balance;
-}
-
-.section-intro h1::before,
-.text-section h2::before {
-  color: var(--purple);
-}
-
-.project-section {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  padding: 72px max(32px, calc((100vw - 1180px) / 2));
-  background: var(--background);
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  transition: background 120ms ease, box-shadow 120ms ease;
-}
-
-.project-section::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 3px;
-  background: transparent;
-  transition: background 120ms ease;
-}
-
-.project-section:hover,
-.project-section:focus-visible {
-  background: var(--selection);
-  box-shadow: inset 0 0 0 1px #3c3c3c;
-  outline: none;
-}
-
-.project-section:hover::before,
-.project-section:focus-visible::before {
-  background: var(--status);
-}
-
-.project-number {
-  position: absolute;
-  top: 36px;
-  left: max(32px, calc((100vw - 1180px) / 2));
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.project-number::before {
-  content: "const project_";
-  color: var(--blue);
-}
-
-.project-number::after {
-  content: " =";
-  color: var(--foreground);
-}
-
-.project-content {
-  min-width: 0;
-}
-
-.project-content p {
-  margin: 0 0 22px;
-  color: var(--green);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.project-content p::before {
-  content: "// ";
-}
-
-.project-content h2 {
-  margin: 0;
-  color: var(--cyan);
-  font-size: clamp(3.5rem, 10vw, 9.5rem);
-  font-weight: 700;
-  line-height: 0.86;
-  letter-spacing: -0.06em;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
-}
-
-.project-domain {
-  display: inline-block;
-  margin-top: 34px;
-  color: var(--orange);
-  font-size: clamp(1rem, 1.7vw, 1.35rem);
-  font-weight: 500;
-  overflow-wrap: anywhere;
-}
-
-.project-domain::before {
-  content: 'href: "';
-  color: var(--blue);
-}
-
-.project-domain::after {
-  content: '";';
-  color: var(--blue);
-}
-
-.contact-section {
-  min-height: 78vh;
-}
-
-.contact-section > a {
-  width: fit-content;
-  margin-top: 38px;
-  padding: 9px 12px;
-  color: var(--yellow);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.contact-section > a:hover {
-  background: var(--selection);
-  border-color: var(--status);
 }
 
 footer {
@@ -298,8 +104,8 @@ footer {
   justify-content: space-between;
   gap: 24px;
   padding: 9px 18px;
-  background: var(--status);
-  color: #fff;
+  background: var(--interactive-primary);
+  color: var(--text-inverse);
   font-size: 0.72rem;
 }
 
@@ -310,78 +116,6 @@ footer a {
 .resume-page {
   width: min(1240px, calc(100% - 64px));
   margin: 0 auto;
-}
-
-.resume-header {
-  min-height: 72svh;
-  display: grid;
-  grid-template-columns: 1fr minmax(0, 6fr) 1fr;
-  align-items: start;
-  gap: 40px;
-  padding: 42px 0 72px;
-  border-bottom: 1px solid var(--border);
-}
-
-.resume-back,
-.resume-linkedin {
-  padding-top: 8px;
-  color: var(--blue);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-decoration: none;
-  text-transform: lowercase;
-}
-
-.resume-back:hover,
-.resume-linkedin:hover {
-  color: var(--yellow);
-}
-
-.resume-linkedin {
-  text-align: right;
-}
-
-.resume-kicker {
-  margin: 0 0 28px;
-  color: var(--green);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.resume-kicker::before {
-  content: "// ";
-}
-
-.resume-header h1 {
-  max-width: 900px;
-  margin: 0;
-  color: var(--cyan);
-  font-size: clamp(4rem, 9vw, 8.5rem);
-  font-weight: 700;
-  line-height: 0.86;
-  letter-spacing: -0.065em;
-  text-wrap: balance;
-}
-
-.resume-intro {
-  max-width: 780px;
-  margin: 38px 0 0;
-  color: var(--muted);
-  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
-  line-height: 1.65;
-}
-
-.resume-intro::before {
-  content: "/* ";
-  color: var(--green);
-}
-
-.resume-intro::after {
-  content: " */";
-  color: var(--green);
 }
 
 .resume-section {
@@ -402,7 +136,7 @@ footer a {
 .resume-section-heading h2 {
   max-width: 850px;
   margin: 0;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: 600;
   line-height: 0.98;
@@ -410,15 +144,15 @@ footer a {
 }
 
 .experience-list {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-default);
 }
 
 .experience-item {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .experience-item[open] {
-  background: var(--panel-alt);
+  background: var(--surface-recessed);
 }
 
 .experience-item summary {
@@ -437,21 +171,19 @@ footer a {
 }
 
 .experience-item summary:hover {
-  background: var(--selection);
+  background: var(--surface-hover);
 }
 
 .experience-index,
 .experience-period {
-  color: var(--muted);
+  color: var(--text-secondary);
   font-size: 0.76rem;
   font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 .experience-index::before {
   content: "ln ";
-  color: #5a5a5a;
+  color: var(--text-tertiary);
 }
 
 .experience-heading {
@@ -462,14 +194,14 @@ footer a {
 }
 
 .experience-heading strong {
-  color: var(--yellow);
+  color: var(--syntax-property);
   font-size: clamp(1.35rem, 2.6vw, 2.5rem);
   line-height: 1;
   letter-spacing: -0.035em;
 }
 
 .experience-heading > span {
-  color: var(--cyan);
+  color: var(--syntax-type);
   font-size: 0.95rem;
 }
 
@@ -479,7 +211,7 @@ footer a {
 
 .experience-toggle {
   justify-self: end;
-  color: var(--blue);
+  color: var(--syntax-keyword);
   font-size: 1.7rem;
   font-weight: 400;
   line-height: 1;
@@ -501,7 +233,7 @@ footer a {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  color: var(--green);
+  color: var(--syntax-comment);
   font-size: 0.82rem;
   line-height: 1.5;
 }
@@ -512,7 +244,7 @@ footer a {
 
 .experience-copy > p {
   margin: 0 0 24px;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: clamp(1.02rem, 1.6vw, 1.22rem);
   line-height: 1.65;
 }
@@ -522,12 +254,12 @@ footer a {
   gap: 12px;
   margin: 0;
   padding-left: 20px;
-  color: var(--muted);
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 
 .experience-copy li::marker {
-  color: var(--purple);
+  color: var(--syntax-control);
 }
 
 .resume-bottom {
@@ -535,15 +267,15 @@ footer a {
   justify-content: space-between;
   gap: 40px;
   padding: 18px 0 24px;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
+  border-top: 1px solid var(--border-default);
+  color: var(--text-secondary);
   font-size: 0.78rem;
   line-height: 1.5;
 }
 
 .resume-bottom p {
   margin: 0;
-  color: var(--green);
+  color: var(--syntax-comment);
 }
 
 .resume-bottom p::before {
@@ -552,175 +284,12 @@ footer a {
 
 .resume-bottom a {
   flex: 0 0 auto;
-  color: var(--blue);
+  color: var(--syntax-keyword);
   font-weight: 700;
   text-decoration: none;
 }
 
 @media (max-width: 700px) {
-  .site-header {
-    padding: 46px 18px 22px;
-  }
-
-  .header-tab {
-    padding: 8px 12px;
-    font-size: 0.64rem;
-  }
-
-  .site-name {
-    max-width: 100%;
-    font-size: clamp(2rem, 10.5vw, 3.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.05em;
-  }
-
-  .site-name::before,
-  .site-name::after {
-    display: inline;
-    font-size: 0.42em;
-  }
-
-  .site-name::before {
-    vertical-align: top;
-  }
-
-  .site-name::after {
-    vertical-align: bottom;
-  }
-
-  .desktop-nav {
-    display: none;
-  }
-
-  .mobile-nav {
-    position: relative;
-    display: block;
-    width: fit-content;
-    margin: 20px auto 0;
-  }
-
-  .mobile-nav summary {
-    width: 30px;
-    height: 22px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 3px 0;
-    cursor: pointer;
-    list-style: none;
-  }
-
-  .mobile-nav summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .mobile-nav summary span {
-    display: block;
-    width: 100%;
-    height: 1px;
-    background: var(--foreground);
-  }
-
-  .mobile-nav nav {
-    position: absolute;
-    z-index: 10;
-    top: 34px;
-    left: 50%;
-    min-width: 170px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 8px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
-    transform: translateX(-50%);
-  }
-
-  .section-intro,
-  .text-section,
-  .project-section {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  .section-intro,
-  .text-section {
-    padding-top: 52px;
-    padding-bottom: 52px;
-  }
-
-  .section-intro {
-    min-height: 42svh;
-  }
-
-  .text-section {
-    min-height: 55svh;
-  }
-
-  .section-label {
-    margin-bottom: 18px;
-    font-size: 0.68rem;
-  }
-
-  .section-intro h1,
-  .text-section h2 {
-    font-size: clamp(2rem, 9.5vw, 3.25rem);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
-  }
-
-  .project-section {
-    min-height: 72svh;
-    padding-top: 64px;
-    padding-bottom: 48px;
-  }
-
-  .project-number {
-    left: 18px;
-    top: 22px;
-    font-size: 0.68rem;
-  }
-
-  .project-number::before {
-    content: "project_";
-  }
-
-  .project-content p {
-    margin-bottom: 16px;
-    font-size: 0.68rem;
-    line-height: 1.5;
-  }
-
-  .project-content h2 {
-    font-size: clamp(2.6rem, 12vw, 4.5rem);
-    line-height: 0.92;
-    letter-spacing: -0.055em;
-  }
-
-  .project-domain {
-    margin-top: 24px;
-    font-size: 0.9rem;
-  }
-
-  .project-domain::before {
-    content: '"';
-  }
-
-  .project-domain::after {
-    content: '"';
-  }
-
-  .contact-section {
-    min-height: 55svh;
-  }
-
-  .contact-section > a {
-    margin-top: 28px;
-    font-size: 0.92rem;
-    line-height: 1.4;
-  }
-
   footer {
     padding: 8px 12px;
     font-size: 0.68rem;
@@ -728,42 +297,6 @@ footer a {
 
   .resume-page {
     width: min(100% - 36px, 1240px);
-  }
-
-  .resume-header {
-    min-height: auto;
-    grid-template-columns: 1fr auto;
-    gap: 26px 20px;
-    padding: 24px 0 56px;
-  }
-
-  .resume-header > div {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .resume-back {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .resume-linkedin {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .resume-kicker {
-    margin-bottom: 20px;
-  }
-
-  .resume-header h1 {
-    font-size: clamp(3rem, 15vw, 5rem);
-    line-height: 0.9;
-  }
-
-  .resume-intro {
-    margin-top: 28px;
-    font-size: 1rem;
   }
 
   .resume-section {
@@ -845,34 +378,9 @@ footer a {
 }
 
 @media (max-width: 420px) {
-  .site-header {
-    padding-top: 42px;
-  }
-
-  .site-name {
-    font-size: clamp(1.85rem, 9.5vw, 2.5rem);
-  }
-
-  .section-intro h1,
-  .text-section h2 {
-    font-size: clamp(1.85rem, 8.8vw, 2.6rem);
-  }
-
-  .project-section {
-    min-height: 64svh;
-  }
-
-  .project-content h2 {
-    font-size: clamp(2.35rem, 11vw, 3.5rem);
-  }
-
   footer {
     flex-direction: column;
     gap: 2px;
-  }
-
-  .resume-header h1 {
-    font-size: clamp(2.7rem, 14vw, 4rem);
   }
 
   .experience-body {
