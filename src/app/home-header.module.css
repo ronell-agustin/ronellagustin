@@ -57,6 +57,11 @@
     font-size: clamp(2rem, 10.5vw, 3.5rem);
   }
 
+  .name::before,
+  .name::after {
+    font-size: 0.3em;
+  }
+
   .socialDock {
     position: static;
     width: fit-content;
