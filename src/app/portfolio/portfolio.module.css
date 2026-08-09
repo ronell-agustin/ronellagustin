@@ -253,6 +253,40 @@
   border-bottom-color: var(--interactive-primary);
 }
 
+.filterDescription {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 12px 14px;
+  background: var(--surface-page);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.filterDescription span {
+  color: var(--syntax-keyword);
+  font-size: 0.66rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.filterDescription p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.filterDescription p::before {
+  content: "/* ";
+  color: var(--syntax-comment);
+}
+
+.filterDescription p::after {
+  content: " */";
+  color: var(--syntax-comment);
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -480,6 +514,16 @@
   .filters button {
     flex: 0 0 auto;
     padding: 11px 12px;
+    font-size: 0.68rem;
+  }
+
+  .filterDescription {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 10px 12px;
+  }
+
+  .filterDescription p {
     font-size: 0.68rem;
   }
 
