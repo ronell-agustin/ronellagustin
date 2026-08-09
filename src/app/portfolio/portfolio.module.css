@@ -113,8 +113,8 @@
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
   padding-top: 30px;
 }
 
@@ -147,18 +147,18 @@
 .placeholder::before {
   content: "<media />";
   position: absolute;
-  top: 12px;
-  left: 14px;
+  top: 10px;
+  left: 11px;
   color: var(--blue);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
 }
 
 .placeholder span {
-  padding: 8px 10px;
+  padding: 6px 8px;
   color: var(--orange);
   background: var(--panel);
   border: 1px solid var(--border);
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   font-weight: 500;
   text-transform: lowercase;
 }
@@ -176,14 +176,14 @@
 .cardMeta {
   display: flex;
   justify-content: space-between;
-  gap: 24px;
-  padding: 18px 18px 0;
+  gap: 14px;
+  padding: 14px 14px 0;
 }
 
 .cardMeta p {
-  margin: 0 0 7px;
+  margin: 0 0 6px;
   color: var(--green);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 500;
 }
 
@@ -194,7 +194,7 @@
 .cardMeta h2 {
   margin: 0;
   color: var(--yellow);
-  font-size: clamp(1.25rem, 1.9vw, 1.85rem);
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
@@ -202,23 +202,29 @@
 .index {
   flex: 0 0 auto;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 500;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 14px 18px 18px;
+  gap: 6px;
+  padding: 12px 14px 14px;
   color: var(--blue);
-  font-size: 0.7rem;
+  font-size: 0.64rem;
 }
 
 .tags span {
-  padding: 4px 7px;
+  padding: 3px 6px;
   background: var(--background);
   border: 1px solid var(--border);
+}
+
+@media (max-width: 1000px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 700px) {
@@ -271,6 +277,10 @@
   .cardMeta {
     gap: 14px;
     padding: 16px 14px 0;
+  }
+
+  .cardMeta h2 {
+    font-size: clamp(1.25rem, 6vw, 1.85rem);
   }
 
   .tags {
