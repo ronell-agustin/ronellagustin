@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import SiteHeader from "../SiteHeader";
 import { getYouTubePortfolioData } from "../../lib/youtube";
 import PortfolioGallery from "./PortfolioGallery";
@@ -18,7 +20,7 @@ export default async function PortfolioPage() {
 
       <main className={styles.page}>
         <section className={styles.pageIntro} aria-labelledby="portfolio-title">
-          <a className={styles.returnLink} href="/">return</a>
+          <Link className={styles.returnLink} href="/">return</Link>
           <p className={styles.kicker}>portfolio[]</p>
           <h1 id="portfolio-title">Creative Work.</h1>
           <p className={styles.intro}>
@@ -40,7 +42,11 @@ export default async function PortfolioPage() {
             </div>
             <div className={styles.propertiesBody}>
               <div className={styles.channelIdentity}>
-                {channel?.thumbnail ? <img src={channel.thumbnail} alt="" /> : <span className={styles.channelIcon}>▶</span>}
+                {channel?.thumbnail ? (
+                  <Image src={channel.thumbnail} alt="" width={52} height={52} />
+                ) : (
+                  <span className={styles.channelIcon}>▶</span>
+                )}
                 <div>
                   <strong>{channel?.title ?? "The Home Base PH"}</strong>
                   <span>@TheHomeBasePH</span>
