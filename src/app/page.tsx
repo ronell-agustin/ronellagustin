@@ -35,6 +35,7 @@ export default function Home() {
 
         <nav className="desktop-nav" aria-label="Main navigation">
           <a href="#work">Work</a>
+          <a href="/resume">Resume</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -47,6 +48,7 @@ export default function Home() {
           </summary>
           <nav aria-label="Mobile navigation">
             <a href="#work">Work</a>
+            <a href="/resume">Resume</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
           </nav>
