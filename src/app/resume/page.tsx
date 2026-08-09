@@ -2,6 +2,46 @@ import Link from "next/link";
 import SiteHeader from "../SiteHeader";
 import styles from "./resume.module.css";
 
+const resumeSections = [
+  { id: "it-skills", index: "01", label: "IT Skills", record: "skills[]" },
+  { id: "experience", index: "02", label: "Professional Experience", record: "experience[]" },
+  { id: "education", index: "03", label: "Education", record: "education[]" },
+  { id: "military-awards", index: "04", label: "Military Awards & Medals", record: "awards[]" },
+];
+
+const technicalSkills = [
+  {
+    name: "languages",
+    values: ["JavaScript", "TypeScript", "C#", "SQL", "HTML", "CSS"],
+  },
+  {
+    name: "frameworks",
+    values: ["React", "Next.js", ".NET", "Tailwind CSS", "Bootstrap"],
+  },
+  {
+    name: "databases",
+    values: ["Supabase", "PostgreSQL", "SQL Server", "Relational DBMS"],
+  },
+  {
+    name: "platforms",
+    values: ["Vercel", "GitHub", "WordPress", "Shopify", "Cloudflare"],
+  },
+  {
+    name: "tools",
+    values: ["Git", "VS Code", "REST APIs", "Elementor", "Liquid"],
+  },
+  {
+    name: "concepts",
+    values: [
+      "API integration",
+      "Relational database design",
+      "Responsive UI",
+      "Version control",
+      "Deployment workflows",
+    ],
+  },
+];
+
 const experience = [
   {
     title: "Full-stack Developer",
@@ -162,20 +202,22 @@ const education = [
   },
 ];
 
-const skills = [
-  "React",
-  ".NET",
-  "C#",
-  "SQL",
-  "JavaScript",
-  "HTML",
-  "CSS",
-  "APIs",
-  "GitHub",
-  "Editing",
-  "Proofreading",
-  "DBMS",
-  "Leadership",
+const militaryAwards = [
+  {
+    name: "Global War on Terrorism Service Medal",
+    type: "medal",
+    status: "placeholder",
+  },
+  {
+    name: "Expert Marksmanship Qualification Badge",
+    type: "badge",
+    status: "placeholder",
+  },
+  {
+    name: "Driver and Mechanic Badge",
+    type: "badge",
+    status: "placeholder",
+  },
 ];
 
 export default function ResumePage() {
@@ -194,10 +236,62 @@ export default function ResumePage() {
       </section>
 
       <main className="resume-page">
-        <section className="resume-section" aria-labelledby="experience-title">
+        <nav className={styles.resumeIndex} aria-label="Resume sections">
+          <div className={styles.queryBar}>
+            <span className={styles.queryKeyword}>SELECT</span>
+            <span> section </span>
+            <span className={styles.queryKeyword}>FROM</span>
+            <span> resume </span>
+            <span className={styles.queryKeyword}>ORDER BY</span>
+            <span> priority;</span>
+          </div>
+          <div className={styles.tableHeader} aria-hidden="true">
+            <span>id</span>
+            <span>section</span>
+            <span>record</span>
+            <span>jump</span>
+          </div>
+          {resumeSections.map((section) => (
+            <a className={styles.tableRow} href={`#${section.id}`} key={section.id}>
+              <span>{section.index}</span>
+              <strong>{section.label}</strong>
+              <code>{section.record}</code>
+              <span>↘</span>
+            </a>
+          ))}
+        </nav>
+
+        <section className="resume-section" id="it-skills" aria-labelledby="skills-title">
+          <div className="resume-section-heading">
+            <p className="section-label">{"// itSkills{}"}</p>
+            <h2 id="skills-title">IT Skills.</h2>
+          </div>
+
+          <div className={styles.skillArrays}>
+            {technicalSkills.map((group) => (
+              <article className={styles.skillArray} key={group.name}>
+                <div className={styles.arrayTitle}>
+                  <span className={styles.arrayKeyword}>const</span>
+                  <strong>{group.name}</strong>
+                  <span>= [</span>
+                </div>
+                <div className={styles.arrayValues}>
+                  {group.values.map((value, index) => (
+                    <span key={value}>
+                      &quot;{value}&quot;{index < group.values.length - 1 ? "," : ""}
+                    </span>
+                  ))}
+                </div>
+                <span className={styles.arrayClose}>];</span>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="resume-section" id="experience" aria-labelledby="experience-title">
           <div className="resume-section-heading">
             <p className="section-label">{"// experience[]"}</p>
-            <h2 id="experience-title">Experience.</h2>
+            <h2 id="experience-title">Professional Experience.</h2>
           </div>
 
           <div className="experience-list">
@@ -233,7 +327,7 @@ export default function ResumePage() {
           </div>
         </section>
 
-        <section className="resume-section" aria-labelledby="education-title">
+        <section className="resume-section" id="education" aria-labelledby="education-title">
           <div className="resume-section-heading">
             <p className="section-label">{"// education[]"}</p>
             <h2 id="education-title">Education.</h2>
@@ -267,8 +361,35 @@ export default function ResumePage() {
           </div>
         </section>
 
+        <section className="resume-section" id="military-awards" aria-labelledby="awards-title">
+          <div className="resume-section-heading">
+            <p className="section-label">{"// awards[]"}</p>
+            <div>
+              <h2 id="awards-title">Military Awards & Medals.</h2>
+              <p className={styles.placeholderNote}>Temporary entries — full service awards record coming next.</p>
+            </div>
+          </div>
+
+          <div className={styles.awardsTable}>
+            <div className={styles.awardsHeader} aria-hidden="true">
+              <span>index</span>
+              <span>award</span>
+              <span>type</span>
+              <span>status</span>
+            </div>
+            {militaryAwards.map((award, index) => (
+              <div className={styles.awardRow} key={award.name}>
+                <span>[{String(index).padStart(2, "0")}]</span>
+                <strong>{award.name}</strong>
+                <code>{award.type}</code>
+                <span>{award.status}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="resume-bottom">
-          <p>{skills.join(" · ")}</p>
+          <p>resume.end()</p>
           <div>
             <a href="mailto:ronellagustin@outlook.com">email ↗</a>
             {" · "}
