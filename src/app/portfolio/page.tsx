@@ -5,7 +5,7 @@ import styles from "./portfolio.module.css";
 export default function PortfolioPage() {
   return (
     <>
-      <SiteHeader syntax="array" />
+      <SiteHeader label="Portfolio" prefix="const " suffix=" = []" />
 
       <main className={styles.page}>
         <section className={styles.pageIntro} aria-labelledby="portfolio-title">
