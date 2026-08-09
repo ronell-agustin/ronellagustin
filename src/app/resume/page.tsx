@@ -12,7 +12,7 @@ const resumeSections = [
 const technicalSkills = [
   {
     name: "languages",
-    values: ["JavaScript", "TypeScript", "C#", "SQL", "HTML", "CSS"],
+    values: ["JavaScript", "TypeScript", "C# (.NET / Unity)", "SQL", "HTML", "CSS"],
   },
   {
     name: "frameworks",
@@ -24,11 +24,15 @@ const technicalSkills = [
   },
   {
     name: "platforms",
-    values: ["Vercel", "GitHub", "WordPress", "Shopify", "Cloudflare"],
+    values: ["Vercel", "GitHub", "WordPress", "Shopify", "Cloudflare", "Unity"],
   },
   {
     name: "tools",
-    values: ["Git", "VS Code", "REST APIs", "Elementor", "Liquid"],
+    values: ["Git", "VS Code", "Postman", "k6", "REST APIs", "Elementor", "Liquid"],
+  },
+  {
+    name: "creativeTools",
+    values: ["Unity", "Blender", "Adobe Creative Cloud"],
   },
   {
     name: "concepts",
@@ -38,6 +42,8 @@ const technicalSkills = [
       "Responsive UI",
       "Version control",
       "Deployment workflows",
+      "API testing",
+      "Load testing",
     ],
   },
 ];
