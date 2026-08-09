@@ -6,15 +6,18 @@ import styles from "./portfolio.module.css";
 type PortfolioCategory = "art" | "photography" | "videography";
 type PortfolioFilter = "all" | PortfolioCategory;
 
-type PortfolioItem = {
+export type PortfolioItem = {
   id: string;
   title: string;
   category: PortfolioCategory;
   tags: string[];
   year?: string;
+  href?: string;
+  thumbnail?: string;
+  source?: "youtube";
 };
 
-const portfolioItems: PortfolioItem[] = [
+const manualPortfolioItems: PortfolioItem[] = [
   {
     id: "art-01",
     title: "Artwork Placeholder 01",
@@ -39,18 +42,6 @@ const portfolioItems: PortfolioItem[] = [
     category: "photography",
     tags: ["photography", "lifestyle", "outdoor"],
   },
-  {
-    id: "video-01",
-    title: "Videography Placeholder 01",
-    category: "videography",
-    tags: ["videography", "video", "storytelling"],
-  },
-  {
-    id: "video-02",
-    title: "Videography Placeholder 02",
-    category: "videography",
-    tags: ["videography", "video", "production"],
-  },
 ];
 
 const filters: { label: string; value: PortfolioFilter }[] = [
@@ -60,19 +51,26 @@ const filters: { label: string; value: PortfolioFilter }[] = [
   { label: "Videography", value: "videography" },
 ];
 
-function PortfolioCard({ item }: { item: PortfolioItem }) {
+function CardContents({ item }: { item: PortfolioItem }) {
   return (
-    <article className={styles.card} data-category={item.category} data-tags={item.tags.join(" ")}>
-      <div className={styles.placeholder} aria-hidden="true">
-        <span>{item.category}</span>
-      </div>
+    <>
+      {item.thumbnail ? (
+        <div className={styles.media}>
+          <img src={item.thumbnail} alt="" loading="lazy" />
+          {item.source === "youtube" && <span className={styles.sourceBadge}>YouTube</span>}
+        </div>
+      ) : (
+        <div className={styles.placeholder} aria-hidden="true">
+          <span>{item.category}</span>
+        </div>
+      )}
 
       <div className={styles.cardMeta}>
         <div>
           <p>{item.category}</p>
           <h2>{item.title}</h2>
         </div>
-        <span className={styles.index}>{item.id}</span>
+        <span className={styles.index}>{item.year ?? item.id}</span>
       </div>
 
       <div className={styles.tags} aria-label="Tags">
@@ -80,19 +78,45 @@ function PortfolioCard({ item }: { item: PortfolioItem }) {
           <span key={tag}>#{tag}</span>
         ))}
       </div>
+    </>
+  );
+}
+
+function PortfolioCard({ item }: { item: PortfolioItem }) {
+  const cardProps = {
+    className: styles.card,
+    "data-category": item.category,
+    "data-tags": item.tags.join(" "),
+  };
+
+  if (item.href) {
+    return (
+      <a {...cardProps} href={item.href} target="_blank" rel="noreferrer" aria-label={`${item.title} on YouTube`}>
+        <CardContents item={item} />
+      </a>
+    );
+  }
+
+  return (
+    <article {...cardProps}>
+      <CardContents item={item} />
     </article>
   );
 }
 
-export default function PortfolioGallery() {
+export default function PortfolioGallery({ youtubeItems = [] }: { youtubeItems?: PortfolioItem[] }) {
   const [activeFilter, setActiveFilter] = useState<PortfolioFilter>("all");
+  const portfolioItems = useMemo(
+    () => [...youtubeItems, ...manualPortfolioItems],
+    [youtubeItems],
+  );
 
   const visibleItems = useMemo(
     () =>
       activeFilter === "all"
         ? portfolioItems
         : portfolioItems.filter((item) => item.tags.includes(activeFilter)),
-    [activeFilter],
+    [activeFilter, portfolioItems],
   );
 
   return (
