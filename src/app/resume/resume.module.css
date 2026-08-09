@@ -66,6 +66,202 @@
   color: var(--syntax-comment);
 }
 
+.resumeIndex {
+  margin-top: 34px;
+  border: 1px solid var(--border-default);
+  background: var(--surface-recessed);
+}
+
+.queryBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 12px 14px;
+  color: var(--text-secondary);
+  background: var(--surface-panel);
+  border-bottom: 1px solid var(--border-default);
+  font-size: 0.72rem;
+}
+
+.queryKeyword {
+  color: var(--syntax-keyword);
+  font-weight: 700;
+}
+
+.tableHeader,
+.tableRow {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1.5fr) minmax(140px, 0.8fr) 56px;
+  gap: 16px;
+  align-items: center;
+}
+
+.tableHeader {
+  padding: 8px 14px;
+  color: var(--text-tertiary);
+  background: var(--surface-page);
+  border-bottom: 1px solid var(--border-default);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tableRow {
+  min-height: 52px;
+  padding: 10px 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-default);
+  text-decoration: none;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.tableRow:last-child {
+  border-bottom: 0;
+}
+
+.tableRow:hover,
+.tableRow:focus-visible {
+  color: var(--text-primary);
+  background: var(--interactive-hover);
+  outline: none;
+}
+
+.tableRow strong {
+  color: var(--syntax-property);
+  font-size: 0.88rem;
+}
+
+.tableRow code {
+  color: var(--syntax-type);
+  font: inherit;
+  font-size: 0.72rem;
+}
+
+.tableRow span:last-child {
+  justify-self: end;
+  color: var(--syntax-control);
+  font-size: 1rem;
+}
+
+.skillArrays {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.skillArray {
+  min-width: 0;
+  padding: 18px;
+  background: var(--surface-recessed);
+  border: 1px solid var(--border-default);
+}
+
+.arrayTitle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.arrayKeyword {
+  color: var(--syntax-keyword);
+  font-weight: 700;
+}
+
+.arrayTitle strong {
+  color: var(--syntax-type);
+  font-size: 0.92rem;
+}
+
+.arrayValues {
+  display: grid;
+  gap: 7px;
+  padding: 16px 0 12px 20px;
+}
+
+.arrayValues span {
+  color: var(--syntax-string);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.arrayClose {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.placeholderNote {
+  max-width: 620px;
+  margin: 18px 0 0;
+  color: var(--syntax-comment);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.placeholderNote::before {
+  content: "/* ";
+}
+
+.placeholderNote::after {
+  content: " */";
+}
+
+.awardsTable {
+  border: 1px solid var(--border-default);
+  background: var(--surface-recessed);
+}
+
+.awardsHeader,
+.awardRow {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1.6fr) minmax(110px, 0.6fr) minmax(110px, 0.6fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.awardsHeader {
+  padding: 9px 14px;
+  color: var(--text-tertiary);
+  background: var(--surface-panel);
+  border-bottom: 1px solid var(--border-default);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.awardRow {
+  min-height: 58px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.awardRow:last-child {
+  border-bottom: 0;
+}
+
+.awardRow > span:first-child,
+.awardRow > span:last-child {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+}
+
+.awardRow strong {
+  color: var(--syntax-property);
+  font-size: 0.86rem;
+}
+
+.awardRow code {
+  color: var(--syntax-type);
+  font: inherit;
+  font-size: 0.72rem;
+}
+
+.awardRow > span:last-child {
+  color: var(--syntax-comment);
+}
+
 @media (max-width: 700px) {
   .intro {
     width: min(100% - 36px, 1240px);
@@ -84,5 +280,36 @@
   .copy {
     margin-top: 18px;
     font-size: 0.95rem;
+  }
+
+  .resumeIndex {
+    margin-top: 24px;
+    overflow-x: auto;
+  }
+
+  .queryBar {
+    font-size: 0.66rem;
+  }
+
+  .tableHeader,
+  .tableRow {
+    min-width: 620px;
+  }
+
+  .skillArrays {
+    grid-template-columns: 1fr;
+  }
+
+  .skillArray {
+    padding: 15px;
+  }
+
+  .awardsTable {
+    overflow-x: auto;
+  }
+
+  .awardsHeader,
+  .awardRow {
+    min-width: 660px;
   }
 }
