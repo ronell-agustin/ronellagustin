@@ -112,13 +112,13 @@ export default function PortfolioGallery({ youtubeItems = [] }: { youtubeItems?:
     [youtubeItems],
   );
 
-  const visibleItems = useMemo(
-    () =>
-      activeFilter === "all"
-        ? portfolioItems
-        : portfolioItems.filter((item) => item.tags.includes(activeFilter)),
-    [activeFilter, portfolioItems],
-  );
+  const visibleItems = useMemo(() => {
+    if (activeFilter === "all") {
+      return [...youtubeItems.slice(0, 3), ...manualPortfolioItems];
+    }
+
+    return portfolioItems.filter((item) => item.tags.includes(activeFilter));
+  }, [activeFilter, portfolioItems, youtubeItems]);
 
   return (
     <>
