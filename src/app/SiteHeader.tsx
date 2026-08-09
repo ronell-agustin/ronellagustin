@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 
 type SiteHeaderProps = {
@@ -45,6 +46,14 @@ function MailIcon() {
   );
 }
 
+function NavigationLink({ label, href }: { label: string; href: string }) {
+  return href.startsWith("/") ? (
+    <Link href={href}>{label}</Link>
+  ) : (
+    <a href={href}>{label}</a>
+  );
+}
+
 export default function SiteHeader({
   label = "Ronell Esteron Agustin",
   prefix = "const ",
@@ -52,19 +61,19 @@ export default function SiteHeader({
 }: SiteHeaderProps) {
   return (
     <header className={styles.header} id="top">
-      <a className={styles.headerTab} href="/" aria-label="Ronell Agustin homepage">
+      <Link className={styles.headerTab} href="/" aria-label="Ronell Agustin homepage">
         ronellagustin.com&nbsp;&nbsp;×
-      </a>
+      </Link>
 
-      <a className={styles.name} href="/" aria-label={`${label}, home`}>
+      <Link className={styles.name} href="/" aria-label={`${label}, home`}>
         <span className={styles.prefix}>{prefix}</span>
         {label}
         <span className={styles.suffix}>{suffix}</span>
-      </a>
+      </Link>
 
       <nav className={styles.desktopNav} aria-label="Main navigation">
         {navigation.map((item) => (
-          <a href={item.href} key={item.href}>{item.label}</a>
+          <NavigationLink href={item.href} label={item.label} key={item.href} />
         ))}
       </nav>
 
@@ -76,7 +85,7 @@ export default function SiteHeader({
         </summary>
         <nav className={styles.mobileMenu} aria-label="Mobile navigation">
           {navigation.map((item) => (
-            <a href={item.href} key={item.href}>{item.label}</a>
+            <NavigationLink href={item.href} label={item.label} key={item.href} />
           ))}
         </nav>
       </details>
