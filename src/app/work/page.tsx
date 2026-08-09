@@ -91,9 +91,9 @@ export default function WorkPage() {
         <section className={styles.intro} aria-labelledby="work-title">
           <a href="/" className={styles.returnLink}>↩ return</a>
           <p className={styles.kicker}>professionalWork[]</p>
-          <h1 id="work-title">Work built for real businesses, brands, and audiences.</h1>
+          <h1 id="work-title">Work that ships.</h1>
           <p className={styles.copy}>
-            A working directory of shipped sites and ongoing professional development.
+            Sites and systems built for real businesses and audiences.
           </p>
         </section>
 
