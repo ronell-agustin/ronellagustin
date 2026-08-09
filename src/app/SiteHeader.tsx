@@ -1,7 +1,9 @@
 import styles from "./SiteHeader.module.css";
 
 type SiteHeaderProps = {
-  syntax?: "object" | "array";
+  label?: string;
+  prefix?: string;
+  suffix?: string;
 };
 
 const navigation = [
@@ -36,18 +38,20 @@ function MailIcon() {
   );
 }
 
-export default function SiteHeader({ syntax = "object" }: SiteHeaderProps) {
-  const suffix = syntax === "array" ? " = []" : " = {}";
-
+export default function SiteHeader({
+  label = "Ronell Esteron Agustin",
+  prefix = "const ",
+  suffix = " = {}",
+}: SiteHeaderProps) {
   return (
     <header className={styles.header} id="top">
       <a className={styles.headerTab} href="/" aria-label="Ronell Agustin homepage">
         ronellagustin.com&nbsp;&nbsp;×
       </a>
 
-      <a className={styles.name} href="/" aria-label="Ronell Esteron Agustin, home">
-        <span className={styles.prefix}>const </span>
-        Ronell Esteron Agustin
+      <a className={styles.name} href="/" aria-label={`${label}, home`}>
+        <span className={styles.prefix}>{prefix}</span>
+        {label}
         <span className={styles.suffix}>{suffix}</span>
       </a>
 
