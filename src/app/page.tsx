@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SiteHeader from "./SiteHeader";
 import styles from "./home-header.module.css";
 
@@ -39,6 +40,29 @@ const explorerItems = [
   { label: "contact.ts", href: "mailto:ronellagustin@outlook.com", type: "file", accent: "blue" },
 ];
 
+function ExplorerLink({ item }: { item: (typeof explorerItems)[number] }) {
+  const content = (
+    <>
+      <span className={styles.treeGuide} aria-hidden="true" />
+      <span
+        className={`${styles.fileIcon} ${
+          item.accent === "yellow" ? styles.fileYellow : styles.fileBlue
+        }`}
+        aria-hidden="true"
+      >
+        {item.type === "folder" ? "▾" : "◇"}
+      </span>
+      <span>{item.label}</span>
+    </>
+  );
+
+  return item.href.startsWith("/") ? (
+    <Link href={item.href}>{content}</Link>
+  ) : (
+    <a href={item.href}>{content}</a>
+  );
+}
+
 export default function Home() {
   return (
     <main>
@@ -58,18 +82,7 @@ export default function Home() {
 
           <nav className={styles.explorerTree} aria-label="Explore the site">
             {explorerItems.map((item) => (
-              <a href={item.href} key={item.label}>
-                <span className={styles.treeGuide} aria-hidden="true" />
-                <span
-                  className={`${styles.fileIcon} ${
-                    item.accent === "yellow" ? styles.fileYellow : styles.fileBlue
-                  }`}
-                  aria-hidden="true"
-                >
-                  {item.type === "folder" ? "▾" : "◇"}
-                </span>
-                <span>{item.label}</span>
-              </a>
+              <ExplorerLink item={item} key={item.label} />
             ))}
           </nav>
 
@@ -80,11 +93,11 @@ export default function Home() {
             </div>
             <div className={styles.codePreview}>
               <span className={styles.lineNumber}>1</span>
-              <p><span className={styles.codePurple}>const</span> developer = <span className={styles.codeYellow}>"Ronell Agustin"</span>;</p>
+              <p><span className={styles.codePurple}>const</span> developer = <span className={styles.codeYellow}>{'"Ronell Agustin"'}</span>;</p>
               <span className={styles.lineNumber}>2</span>
-              <p><span className={styles.codePurple}>const</span> focus = [<span className={styles.codeYellow}>"web"</span>, <span className={styles.codeYellow}>"creative"</span>, <span className={styles.codeYellow}>"systems"</span>];</p>
+              <p><span className={styles.codePurple}>const</span> focus = [<span className={styles.codeYellow}>{'"web"'}</span>, <span className={styles.codeYellow}>{'"creative"'}</span>, <span className={styles.codeYellow}>{'"systems"'}</span>];</p>
               <span className={styles.lineNumber}>3</span>
-              <p className={styles.comment}>// build useful things, keep learning.</p>
+              <p className={styles.comment}>{"// build useful things, keep learning."}</p>
             </div>
           </div>
         </div>
@@ -92,7 +105,7 @@ export default function Home() {
 
       <section className={styles.workSection} id="work" aria-labelledby="work-title">
         <div className={styles.sectionHeading}>
-          <p>// selected work</p>
+          <p>{"// selected work"}</p>
           <h1 id="work-title">Professional Work</h1>
         </div>
 
@@ -126,13 +139,13 @@ export default function Home() {
       <section className={styles.infoGrid}>
         <article id="about" className={styles.infoPanel}>
           <span className={styles.panelLabel}>about.md</span>
-          <p>// developer, digital strategist, business owner, and U.S. Army veteran.</p>
-          <a href="/resume">open resume.json →</a>
+          <p>{"// developer, digital strategist, business owner, and U.S. Army veteran."}</p>
+          <Link href="/resume">open resume.json →</Link>
         </article>
 
         <article id="contact" className={styles.infoPanel}>
           <span className={styles.panelLabel}>contact.ts</span>
-          <p>export const email = <span>"ronellagustin@outlook.com"</span>;</p>
+          <p>export const email = <span>{'"ronellagustin@outlook.com"'}</span>;</p>
           <a href="mailto:ronellagustin@outlook.com">send message →</a>
         </article>
       </section>
