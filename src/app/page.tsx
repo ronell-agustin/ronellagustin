@@ -29,6 +29,10 @@ export default function Home() {
   return (
     <main>
       <header className="site-header" id="top">
+        <a className="header-tab" href="mailto:ronellagustin@outlook.com">
+          ronellagustin@outlook.com&nbsp;&nbsp;×
+        </a>
+
         <a className="site-name" href="#top" aria-label="Ronell Esteron Agustin, home">
           Ronell Esteron Agustin
         </a>
