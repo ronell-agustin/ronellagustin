@@ -196,7 +196,7 @@ export default function ResumePage() {
         <section className="resume-section" aria-labelledby="experience-title">
           <div className="resume-section-heading">
             <p className="section-label">// experience[]</p>
-            <h2 id="experience-title">Professional experience.</h2>
+            <h2 id="experience-title">Experience.</h2>
           </div>
 
           <div className="experience-list">
