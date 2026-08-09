@@ -27,6 +27,10 @@ const technicalSkills = [
     values: ["Vercel", "GitHub", "WordPress", "Shopify", "Cloudflare", "Unity"],
   },
   {
+    name: "infrastructure",
+    values: ["Docker", "Proxmox VE", "Virtual Machines", "Linux", "Home Assistant", "Self-hosted services"],
+  },
+  {
     name: "tools",
     values: ["Git", "VS Code", "Postman", "k6", "REST APIs", "Elementor", "Liquid"],
   },
@@ -44,6 +48,9 @@ const technicalSkills = [
       "Deployment workflows",
       "API testing",
       "Load testing",
+      "Virtualization",
+      "Containerization",
+      "Networking",
     ],
   },
 ];
