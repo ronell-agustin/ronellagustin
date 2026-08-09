@@ -1,23 +1,25 @@
+import SiteHeader from "../SiteHeader";
 import PortfolioGallery from "./PortfolioGallery";
 import styles from "./portfolio.module.css";
 
 export default function PortfolioPage() {
   return (
-    <main className={styles.page}>
-      <header className={styles.header}>
-        <a href="/" className={styles.back}>← Home</a>
-        <div>
-          <p className={styles.kicker}>Creative Portfolio</p>
-          <h1>Art, photography, and videography.</h1>
+    <>
+      <SiteHeader syntax="array" />
+
+      <main className={styles.page}>
+        <section className={styles.pageIntro} aria-labelledby="portfolio-title">
+          <p className={styles.kicker}>portfolio[]</p>
+          <h1 id="portfolio-title">Art, photography, and videography.</h1>
           <p className={styles.intro}>
             A growing collection of visual work. Use the filter to narrow the gallery by medium.
           </p>
-        </div>
-      </header>
+        </section>
 
-      <section className={styles.content} aria-label="Creative work">
-        <PortfolioGallery />
-      </section>
-    </main>
+        <section className={styles.content} aria-label="Creative work">
+          <PortfolioGallery />
+        </section>
+      </main>
+    </>
   );
 }
