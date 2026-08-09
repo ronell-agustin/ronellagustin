@@ -11,7 +11,7 @@ export default function PortfolioPage() {
         <section className={styles.pageIntro} aria-labelledby="portfolio-title">
           <a className={styles.returnLink} href="/">return</a>
           <p className={styles.kicker}>portfolio[]</p>
-          <h1 id="portfolio-title">Art, photography, and videography.</h1>
+          <h1 id="portfolio-title">Creative Work.</h1>
           <p className={styles.intro}>
             A growing collection of visual work. Use the filter to narrow the gallery by medium.
           </p>
