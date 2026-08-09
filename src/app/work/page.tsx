@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SiteHeader from "../SiteHeader";
 import styles from "./work.module.css";
 
@@ -89,7 +90,7 @@ export default function WorkPage() {
 
       <main className={styles.page}>
         <section className={styles.intro} aria-labelledby="work-title">
-          <a href="/" className={styles.returnLink}>↩ return</a>
+          <Link href="/" className={styles.returnLink}>↩ return</Link>
           <p className={styles.kicker}>professionalWork[]</p>
           <h1 id="work-title">Work that ships.</h1>
           <p className={styles.copy}>
