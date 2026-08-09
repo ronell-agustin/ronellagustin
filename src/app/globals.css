@@ -21,6 +21,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -134,6 +135,10 @@ a {
   opacity: 0.65;
 }
 
+.project-content {
+  min-width: 0;
+}
+
 .project-content p {
   margin: 0 0 22px;
   color: var(--muted);
@@ -148,6 +153,7 @@ a {
   font-size: clamp(3.5rem, 10.5vw, 10rem);
   line-height: 0.84;
   letter-spacing: -0.07em;
+  overflow-wrap: anywhere;
   text-wrap: balance;
 }
 
@@ -156,6 +162,7 @@ a {
   margin-top: 34px;
   font-size: clamp(1rem, 1.7vw, 1.35rem);
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .contact-section {
@@ -187,11 +194,14 @@ footer a {
 
 @media (max-width: 700px) {
   .site-header {
-    padding: 38px 20px 24px;
+    padding: 30px 18px 22px;
   }
 
   .site-name {
-    font-size: clamp(2.6rem, 15vw, 4.8rem);
+    max-width: 100%;
+    font-size: clamp(2rem, 10.5vw, 3.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
   }
 
   .desktop-nav {
@@ -202,12 +212,12 @@ footer a {
     position: relative;
     display: block;
     width: fit-content;
-    margin: 26px auto 0;
+    margin: 20px auto 0;
   }
 
   .mobile-nav summary {
-    width: 34px;
-    height: 26px;
+    width: 30px;
+    height: 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -230,13 +240,13 @@ footer a {
   .mobile-nav nav {
     position: absolute;
     z-index: 10;
-    top: 38px;
+    top: 34px;
     left: 50%;
-    min-width: 150px;
+    min-width: 144px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    padding: 22px;
+    gap: 16px;
+    padding: 18px;
     background: var(--background);
     border: 1px solid var(--border);
     transform: translateX(-50%);
@@ -245,28 +255,105 @@ footer a {
   .section-intro,
   .text-section,
   .project-section {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .section-intro,
+  .text-section {
+    padding-top: 52px;
+    padding-bottom: 52px;
   }
 
   .section-intro {
-    min-height: 52vh;
+    min-height: 42svh;
   }
 
   .text-section {
-    min-height: 70vh;
+    min-height: 55svh;
+  }
+
+  .section-label {
+    margin-bottom: 18px;
+    font-size: 0.68rem;
+  }
+
+  .section-intro h1,
+  .text-section h2 {
+    font-size: clamp(2rem, 9.5vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .project-section {
+    min-height: 72svh;
+    padding-top: 64px;
+    padding-bottom: 48px;
   }
 
   .project-number {
-    left: 20px;
-    top: 26px;
+    left: 18px;
+    top: 22px;
+    font-size: 0.68rem;
+  }
+
+  .project-content p {
+    margin-bottom: 16px;
+    font-size: 0.68rem;
+    line-height: 1.5;
   }
 
   .project-content h2 {
-    font-size: clamp(3.2rem, 18vw, 6rem);
+    font-size: clamp(2.6rem, 12vw, 4.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+  }
+
+  .project-domain {
+    margin-top: 24px;
+    font-size: 0.95rem;
+  }
+
+  .contact-section {
+    min-height: 55svh;
+  }
+
+  .contact-section > a {
+    margin-top: 28px;
+    font-size: 0.95rem;
+    line-height: 1.4;
   }
 
   footer {
-    padding: 24px 20px;
+    padding: 22px 18px;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    padding-top: 24px;
+  }
+
+  .site-name {
+    font-size: clamp(1.85rem, 9.5vw, 2.5rem);
+  }
+
+  .section-intro h1,
+  .text-section h2 {
+    font-size: clamp(1.85rem, 8.8vw, 2.6rem);
+  }
+
+  .project-section {
+    min-height: 64svh;
+  }
+
+  .project-content h2 {
+    font-size: clamp(2.35rem, 11vw, 3.5rem);
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 8px;
   }
 }
