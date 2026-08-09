@@ -1,10 +1,16 @@
 import SiteHeader from "../SiteHeader";
-import { getYouTubePortfolioItems } from "../../lib/youtube";
+import { getYouTubePortfolioData } from "../../lib/youtube";
 import PortfolioGallery from "./PortfolioGallery";
 import styles from "./portfolio.module.css";
 
+function formatCount(value?: number) {
+  if (value === undefined) return "—";
+  return new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(value);
+}
+
 export default async function PortfolioPage() {
-  const youtubeItems = await getYouTubePortfolioItems();
+  const youtube = await getYouTubePortfolioData();
+  const channel = youtube.channel;
 
   return (
     <>
@@ -21,7 +27,43 @@ export default async function PortfolioPage() {
         </section>
 
         <section className={styles.content} aria-label="Creative work">
-          <PortfolioGallery youtubeItems={youtubeItems} />
+          <a
+            className={styles.channelProperties}
+            href="https://www.youtube.com/@TheHomeBasePH"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open The Home Base PH on YouTube"
+          >
+            <div className={styles.propertiesTitlebar}>
+              <span>youtube.channel</span>
+              <span>Properties</span>
+            </div>
+            <div className={styles.propertiesBody}>
+              <div className={styles.channelIdentity}>
+                {channel?.thumbnail ? <img src={channel.thumbnail} alt="" /> : <span className={styles.channelIcon}>▶</span>}
+                <div>
+                  <strong>{channel?.title ?? "The Home Base PH"}</strong>
+                  <span>@TheHomeBasePH</span>
+                </div>
+              </div>
+              <dl className={styles.channelStats}>
+                <div>
+                  <dt>Videos</dt>
+                  <dd>{formatCount(channel?.videoCount)}</dd>
+                </div>
+                <div>
+                  <dt>Subscribers</dt>
+                  <dd>{channel?.hiddenSubscriberCount ? "Hidden" : formatCount(channel?.subscriberCount)}</dd>
+                </div>
+                <div>
+                  <dt>Channel</dt>
+                  <dd>youtube.com/@TheHomeBasePH ↗</dd>
+                </div>
+              </dl>
+            </div>
+          </a>
+
+          <PortfolioGallery youtubeItems={youtube.items} />
         </section>
       </main>
     </>
