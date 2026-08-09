@@ -52,6 +52,13 @@ const filters: { label: string; value: PortfolioFilter }[] = [
   { label: "Videography", value: "videography" },
 ];
 
+const filterDescriptions: Record<PortfolioFilter, string> = {
+  all: "A curated cross-section of my visual work across drawing, photography, and video.",
+  art: "Original concepts, sketches, character work, and selected AI-assisted finishing workflows.",
+  photography: "Photography focused on environment, light, framing, people, places, and the stories around them.",
+  videography: "Published video work from The Home Base PH, pulled directly from my YouTube channel.",
+};
+
 function CardContents({ item }: { item: PortfolioItem }) {
   return (
     <>
@@ -135,6 +142,11 @@ export default function PortfolioGallery({ youtubeItems = [] }: { youtubeItems?:
           </button>
         ))}
       </nav>
+
+      <div className={styles.filterDescription} aria-live="polite">
+        <span>{activeFilter}.md</span>
+        <p>{filterDescriptions[activeFilter]}</p>
+      </div>
 
       <div className={styles.gallery}>
         {visibleItems.map((item) => (
