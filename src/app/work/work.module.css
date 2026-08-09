@@ -6,42 +6,42 @@
 
 .intro {
   padding: 52px 0 44px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .returnLink {
   display: inline-block;
   margin-bottom: 22px;
-  color: var(--purple);
+  color: var(--syntax-control);
   font-size: 0.72rem;
   font-weight: 600;
   text-decoration: none;
 }
 
 .returnLink:hover {
-  color: var(--yellow);
+  color: var(--syntax-property);
 }
 
 .kicker {
   margin: 0 0 14px;
-  color: var(--green);
+  color: var(--syntax-comment);
   font-size: 0.75rem;
 }
 
 .kicker::before {
   content: "const ";
-  color: var(--blue);
+  color: var(--syntax-keyword);
 }
 
 .kicker::after {
   content: " = []";
-  color: var(--yellow);
+  color: var(--syntax-property);
 }
 
 .intro h1 {
   max-width: 980px;
   margin: 0;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: clamp(2.2rem, 5vw, 4.6rem);
   font-weight: 600;
   line-height: 0.98;
@@ -51,42 +51,42 @@
 .copy {
   max-width: 760px;
   margin: 22px 0 0;
-  color: var(--muted);
+  color: var(--text-secondary);
   font-size: clamp(0.98rem, 1.4vw, 1.15rem);
   line-height: 1.65;
 }
 
 .copy::before {
   content: "/* ";
-  color: var(--green);
+  color: var(--syntax-comment);
 }
 
 .copy::after {
   content: " */";
-  color: var(--green);
+  color: var(--syntax-comment);
 }
 
 .explorer {
   margin-top: 42px;
-  background: var(--panel-alt);
-  border: 1px solid var(--border);
+  background: var(--surface-recessed);
+  border: 1px solid var(--border-default);
 }
 
 .explorerChrome {
   display: flex;
   justify-content: space-between;
   padding: 10px 14px;
-  color: var(--muted);
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: var(--surface-panel);
+  border-bottom: 1px solid var(--border-default);
   font-size: 0.66rem;
   letter-spacing: 0.08em;
 }
 
 .explorerRoot {
   padding: 12px 14px;
-  color: var(--foreground);
-  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-default);
   font-size: 0.74rem;
   font-weight: 700;
 }
@@ -100,8 +100,8 @@
 .folder {
   min-width: 0;
   padding: 14px 16px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .folder:nth-child(2n) {
@@ -112,14 +112,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--yellow);
+  color: var(--syntax-property);
   font-size: 0.76rem;
   font-weight: 600;
 }
 
 .folderName em {
   margin-left: auto;
-  color: #5f5f5f;
+  color: var(--text-tertiary);
   font-size: 0.62rem;
   font-style: normal;
   font-weight: 500;
@@ -131,21 +131,21 @@
   align-items: center;
   gap: 7px;
   padding: 8px 0 0 12px;
-  color: var(--muted);
+  color: var(--text-secondary);
   font-size: 0.72rem;
   text-decoration: none;
 }
 
 .folder a:hover {
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
 .treeLine {
-  color: var(--border);
+  color: var(--border-default);
 }
 
 .fileIcon {
-  color: var(--blue);
+  color: var(--syntax-keyword);
 }
 
 .workList {
@@ -156,23 +156,23 @@
 
 .workCard {
   scroll-margin-top: 24px;
-  background: var(--panel-alt);
-  border: 1px solid var(--border);
+  background: var(--surface-recessed);
+  border: 1px solid var(--border-default);
   transition: border-color 120ms ease, background 120ms ease;
 }
 
 .workCard:hover {
-  background: var(--selection);
-  border-color: #3c3c3c;
+  background: var(--interactive-hover);
+  border-color: var(--border-emphasis);
 }
 
 .cardTab {
   display: flex;
   justify-content: space-between;
   padding: 10px 14px;
-  color: var(--muted);
-  background: var(--background);
-  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: var(--surface-page);
+  border-bottom: 1px solid var(--border-default);
   font-size: 0.66rem;
 }
 
@@ -185,7 +185,7 @@
 
 .cardIdentity p {
   margin: 0 0 16px;
-  color: var(--green);
+  color: var(--syntax-comment);
   font-size: 0.7rem;
 }
 
@@ -195,7 +195,7 @@
 
 .cardIdentity h2 {
   margin: 0;
-  color: var(--cyan);
+  color: var(--syntax-type);
   font-size: clamp(2rem, 4vw, 4rem);
   line-height: 0.95;
   letter-spacing: -0.055em;
@@ -204,7 +204,7 @@
 .cardIdentity > span {
   display: block;
   margin-top: 18px;
-  color: var(--yellow);
+  color: var(--syntax-property);
   font-size: 0.78rem;
   line-height: 1.5;
 }
@@ -216,7 +216,7 @@
 .cardSummary > p {
   max-width: 680px;
   margin: 0;
-  color: var(--foreground);
+  color: var(--text-primary);
   font-size: clamp(1rem, 1.45vw, 1.2rem);
   line-height: 1.7;
 }
@@ -230,9 +230,9 @@
 
 .stack span {
   padding: 5px 8px;
-  color: var(--blue);
-  background: var(--background);
-  border: 1px solid var(--border);
+  color: var(--syntax-keyword);
+  background: var(--surface-page);
+  border: 1px solid var(--border-default);
   font-size: 0.68rem;
 }
 
@@ -241,15 +241,15 @@
   justify-content: space-between;
   gap: 20px;
   padding: 12px 16px;
-  color: var(--orange);
-  border-top: 1px solid var(--border);
+  color: var(--syntax-string);
+  border-top: 1px solid var(--border-default);
   font-size: 0.72rem;
   text-decoration: none;
 }
 
 .cardFooter:hover {
-  color: var(--yellow);
-  background: var(--background);
+  color: var(--syntax-property);
+  background: var(--surface-page);
 }
 
 @media (max-width: 850px) {
