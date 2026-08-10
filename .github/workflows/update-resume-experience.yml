@@ -97,3 +97,5 @@ jobs:
           git add src/app/resume/page.tsx
           git commit -m "Reorder and clarify professional experience"
           git push
+
+# trigger update
