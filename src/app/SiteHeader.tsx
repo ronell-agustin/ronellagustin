@@ -9,8 +9,8 @@ type SiteHeaderProps = {
 
 const navigation = [
   { label: "work", href: "/work" },
-  { label: "portfolio", href: "/portfolio" },
   { label: "resume", href: "/resume" },
+  { label: "portfolio", href: "/portfolio" },
   { label: "contact", href: "mailto:ronellagustin@outlook.com" },
 ];
 
@@ -26,14 +26,6 @@ function GitHubIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.91-2.78.62-3.37-1.2-3.37-1.2-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.64-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.32 9.32 0 0 1 12 6.94c.85 0 1.7.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.79-4.58 5.04.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.24 10.24 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" />
-    </svg>
-  );
-}
-
-function YouTubeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M23.5 6.2a3.02 3.02 0 0 0-2.13-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.37.51A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.13 2.14c1.87.51 9.37.51 9.37.51s7.5 0 9.37-.51a3.02 3.02 0 0 0 2.13-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z" />
     </svg>
   );
 }
@@ -96,9 +88,6 @@ export default function SiteHeader({
         </a>
         <a href="https://github.com/ronell-agustin" target="_blank" rel="noreferrer" aria-label="GitHub">
           <GitHubIcon />
-        </a>
-        <a href="https://www.youtube.com/@TheHomeBasePH" target="_blank" rel="noreferrer" aria-label="YouTube">
-          <YouTubeIcon />
         </a>
         <a href="mailto:ronellagustin@outlook.com" aria-label="Email Ronell">
           <MailIcon />
