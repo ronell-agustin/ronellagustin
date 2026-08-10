@@ -27,7 +27,6 @@ jobs:
         run: |
           from pathlib import Path
 
-          # Root metadata
           layout = Path('src/app/layout.tsx')
           text = layout.read_text()
           start = text.index('export const metadata: Metadata = {')
@@ -40,9 +39,7 @@ jobs:
             },
             description:
               "Portfolio and resume of Ronell Agustin, spanning web development, digital marketing, creative work, business operations, and military leadership.",
-            alternates: {
-              canonical: "/",
-            },
+            alternates: { canonical: "/" },
             openGraph: {
               title: "Ronell Agustin | Portfolio & Resume",
               description:
@@ -57,10 +54,7 @@ jobs:
               description:
                 "Professional work, technical experience, and creative portfolio of Ronell Agustin.",
             },
-            robots: {
-              index: true,
-              follow: true,
-            },
+            robots: { index: true, follow: true },
             icons: {
               icon: "/portfolio/favicon.png",
               shortcut: "/portfolio/favicon.png",
@@ -69,60 +63,28 @@ jobs:
           };'''
           layout.write_text(text[:start] + metadata + text[end:])
 
-          # Page-specific metadata
           pages = {
-            'src/app/work/page.tsx': (
-              'Work',
-              'Selected professional web development, ecommerce, local-business, agency, and publishing work by Ronell Agustin.',
-              '/work',
-            ),
-            'src/app/portfolio/page.tsx': (
-              'Creative Work',
-              'Creative portfolio of Ronell Agustin featuring illustration, photography, videography, and 3D environment design.',
-              '/portfolio',
-            ),
-            'src/app/resume/page.tsx': (
-              'Resume',
-              'Resume of Ronell Agustin covering IT skills, professional experience, education, military awards, qualifications, and training.',
-              '/resume',
-            ),
+            'src/app/work/page.tsx': ('Work', 'Selected professional web development, ecommerce, local-business, agency, and publishing work by Ronell Agustin.', '/work'),
+            'src/app/portfolio/page.tsx': ('Creative Work', 'Creative portfolio of Ronell Agustin featuring illustration, photography, videography, and 3D environment design.', '/portfolio'),
+            'src/app/resume/page.tsx': ('Resume', 'Resume of Ronell Agustin covering IT skills, professional experience, education, military awards, qualifications, and training.', '/resume'),
           }
-
           for filename, (title, description, canonical) in pages.items():
             path = Path(filename)
-            page = path.read_text()
-            if 'import type { Metadata } from "next";' not in page:
-              page = 'import type { Metadata } from "next";\n' + page
-            marker = '\n\n'
-            first_block_end = page.find(marker)
-            # Insert after imports, not after only the first import.
-            lines = page.splitlines()
+            lines = path.read_text().splitlines()
+            if not any(line == 'import type { Metadata } from "next";' for line in lines):
+              lines.insert(0, 'import type { Metadata } from "next";')
             import_end = 0
             for i, line in enumerate(lines):
-              if line.startswith('import '):
-                import_end = i + 1
-              elif import_end and line.strip() != '':
-                break
-            meta_lines = [
-              '',
-              'export const metadata: Metadata = {',
-              f'  title: "{title}",',
-              f'  description: "{description}",',
-              f'  alternates: {{ canonical: "{canonical}" }},',
-              '};',
-              '',
-            ]
-            # Remove existing page metadata if rerun (defensive).
-            if 'export const metadata: Metadata = {' not in '\n'.join(lines[import_end:]):
-              lines[import_end:import_end] = meta_lines
+              if line.startswith('import '): import_end = i + 1
+              elif import_end and line.strip(): break
+            if not any('export const metadata: Metadata' in line for line in lines):
+              lines[import_end:import_end] = ['', 'export const metadata: Metadata = {', f'  title: "{title}",', f'  description: "{description}",', f'  alternates: {{ canonical: "{canonical}" }},', '};', '']
             path.write_text('\n'.join(lines) + '\n')
 
-          # Sitemap and robots
           Path('src/app/sitemap.ts').write_text('''import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://ronellagustin.com";
-
   return ["", "/work", "/portfolio", "/resume"].map((path) => ({
     url: `${baseUrl}${path}`,
     changeFrequency: "monthly" as const,
@@ -130,32 +92,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 }
 ''')
-
           Path('src/app/robots.ts').write_text('''import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: { userAgent: "*", allow: "/" },
     sitemap: "https://ronellagustin.com/sitemap.xml",
   };
 }
 ''')
 
-          # Portfolio modal accessibility: focus trap, initial focus, and return focus.
           gallery = Path('src/app/portfolio/PortfolioGallery.tsx')
           text = gallery.read_text()
-          text = text.replace(
-            'import { useEffect, useMemo, useState } from "react";',
-            'import { useEffect, useMemo, useRef, useState } from "react";',
-          )
-          text = text.replace(
-            '  const [activeIndex, setActiveIndex] = useState(0);\n  const active = images[activeIndex];',
-            '  const [activeIndex, setActiveIndex] = useState(0);\n  const dialogRef = useRef<HTMLElement>(null);\n  const closeButtonRef = useRef<HTMLButtonElement>(null);\n  const previouslyFocusedRef = useRef<HTMLElement | null>(null);\n  const active = images[activeIndex];',
-          )
-          old_effect = '''  useEffect(() => {
+          text = text.replace('import { useEffect, useMemo, useState } from "react";', 'import { useEffect, useMemo, useRef, useState } from "react";')
+          text = text.replace('  const [activeIndex, setActiveIndex] = useState(0);\n  const active = images[activeIndex];', '  const [activeIndex, setActiveIndex] = useState(0);\n  const dialogRef = useRef<HTMLElement>(null);\n  const closeButtonRef = useRef<HTMLButtonElement>(null);\n  const previouslyFocusedRef = useRef<HTMLElement | null>(null);\n  const active = images[activeIndex];')
+          old = '''  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
       if (event.key === "ArrowRight" && images.length > 1) setActiveIndex((index) => (index + 1) % images.length);
@@ -170,7 +121,7 @@ export default function robots(): MetadataRoute.Robots {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [images.length, onClose]);'''
-          new_effect = '''  useEffect(() => {
+          new = '''  useEffect(() => {
     previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
     closeButtonRef.current?.focus();
 
@@ -180,26 +131,14 @@ export default function robots(): MetadataRoute.Robots {
         onClose();
         return;
       }
-
-      if (event.key === "ArrowRight" && images.length > 1) {
-        setActiveIndex((index) => (index + 1) % images.length);
-      }
-      if (event.key === "ArrowLeft" && images.length > 1) {
-        setActiveIndex((index) => (index - 1 + images.length) % images.length);
-      }
-
+      if (event.key === "ArrowRight" && images.length > 1) setActiveIndex((index) => (index + 1) % images.length);
+      if (event.key === "ArrowLeft" && images.length > 1) setActiveIndex((index) => (index - 1 + images.length) % images.length);
       if (event.key === "Tab" && dialogRef.current) {
-        const focusable = Array.from(
-          dialogRef.current.querySelectorAll<HTMLElement>(
-            'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-          ),
-        );
-
-        if (focusable.length === 0) {
+        const focusable = Array.from(dialogRef.current.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+        if (!focusable.length) {
           event.preventDefault();
           return;
         }
-
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
         if (event.shiftKey && document.activeElement === first) {
@@ -214,41 +153,32 @@ export default function robots(): MetadataRoute.Robots {
 
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
       previouslyFocusedRef.current?.focus();
     };
   }, [images.length, onClose]);'''
-          if old_effect not in text:
-            raise SystemExit('PortfolioViewer effect block did not match expected source')
-          text = text.replace(old_effect, new_effect)
-          text = text.replace(
-            '<section className={styles.viewer} role="dialog" aria-modal="true" aria-labelledby="portfolio-viewer-title" onMouseDown={(event) => event.stopPropagation()}>',
-            '<section ref={dialogRef} className={styles.viewer} role="dialog" aria-modal="true" aria-labelledby="portfolio-viewer-title" onMouseDown={(event) => event.stopPropagation()}>',
-          )
-          text = text.replace(
-            '<button type="button" onClick={onClose} aria-label="Close viewer">×</button>',
-            '<button ref={closeButtonRef} type="button" onClick={onClose} aria-label="Close viewer">×</button>',
-          )
+          if old not in text: raise SystemExit('PortfolioViewer effect did not match')
+          text = text.replace(old, new)
+          text = text.replace('<section className={styles.viewer} role="dialog" aria-modal="true" aria-labelledby="portfolio-viewer-title" onMouseDown={(event) => event.stopPropagation()}>', '<section ref={dialogRef} className={styles.viewer} role="dialog" aria-modal="true" aria-labelledby="portfolio-viewer-title" onMouseDown={(event) => event.stopPropagation()}>')
+          text = text.replace('<button type="button" onClick={onClose} aria-label="Close viewer">×</button>', '<button ref={closeButtonRef} type="button" onClick={onClose} aria-label="Close viewer">×</button>')
           gallery.write_text(text)
 
-          # Finished-project README
           Path('README.md').write_text('''# ronellagustin.com
 
 Source repository for **ronellagustin.com**, the personal portfolio and interactive resume of Ronell Agustin.
 
 ## Site
 
-The site is a compact professional home built around an IDE / code-editor visual language. It presents four primary areas:
+The site uses an IDE / code-editor visual language and presents four primary areas:
 
 - **Home** — selected professional work and site navigation
 - **Work** — commercial web, ecommerce, agency, and publishing work
 - **Portfolio** — illustration, photography, videography, and 3D environment design
 - **Resume** — IT skills, professional experience, education, and military service record
 
-The creative portfolio includes process galleries for original artwork and transparent AI-assisted finishing workflows, a Unity-based 3D dream-house case study, curated photography, and a live YouTube feed from The Home Base PH.
+The creative portfolio includes original-art process galleries with transparent AI-assisted finishing workflows, a Unity-based dream-house case study, curated photography, and a live YouTube feed from The Home Base PH.
 
 ## Stack
 
@@ -257,10 +187,10 @@ The creative portfolio includes process galleries for original artwork and trans
 - TypeScript
 - CSS Modules and shared CSS design tokens
 - Tailwind CSS 4 / PostCSS tooling
-- Vercel deployment
-- YouTube Data API v3 for server-side portfolio data
+- Vercel
+- YouTube Data API v3
 
-The site intentionally does not use a database. Most content is maintained directly in the repository, while YouTube content is fetched server-side and revalidated periodically.
+The site intentionally does not use a database. Most content is maintained directly in the repository; YouTube data is fetched server-side and periodically revalidated.
 
 ## Local development
 
@@ -281,19 +211,19 @@ npm run build
 Copy `.env.example` when local YouTube integration is needed.
 
 - `YOUTUBE_API_KEY` — required for live YouTube channel/video data
-- `YOUTUBE_HANDLE` — optional channel handle override
+- `YOUTUBE_HANDLE` — optional handle override
 - `YOUTUBE_CHANNEL_ID` — optional channel ID override
 - `YOUTUBE_UPLOADS_PLAYLIST_ID` — optional uploads-playlist override
 
-The API key is used server-side and should be configured in Vercel for deployed environments.
+The API key is server-side and should be configured in Vercel for deployed environments.
 
 ## Deployment
 
-The `main` branch is deployed through Vercel. Static portfolio assets live under `public/portfolio/`, including the site favicon and creative-work images.
+The `main` branch deploys through Vercel. Static creative assets live under `public/portfolio/`, including the site favicon.
 
 ## Repository notes
 
-This repository is the source of truth for the public portfolio, resume content, project descriptions, creative-work metadata, and site implementation. Update professional or creative content here and let the normal Vercel deployment pipeline publish it.
+This repository is the source of truth for the public portfolio, resume, project descriptions, creative-work metadata, and site implementation.
 ''')
 
       - name: Remove unused Supabase packages
@@ -307,3 +237,5 @@ This repository is the source of truth for the public portfolio, resume content,
           git add -A
           git commit -m "Finish production metadata and accessibility cleanup"
           git push
+
+# trigger
