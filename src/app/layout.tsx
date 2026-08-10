@@ -20,12 +20,19 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Ronell Agustin",
     type: "website",
+    images: [
+      {
+        url: "/portfolio/ronellPhoto.jpg",
+        alt: "Ronell Agustin",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Ronell Agustin | Portfolio & Resume",
     description:
       "Professional work, technical experience, and creative portfolio of Ronell Agustin.",
+    images: ["/portfolio/ronellPhoto.jpg"],
   },
   robots: {
     index: true,
