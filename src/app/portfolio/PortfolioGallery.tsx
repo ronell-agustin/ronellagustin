@@ -212,7 +212,11 @@ function CardContents({ item }: { item: PortfolioItem }) {
         <div className={styles.media}>
           <Image src={item.thumbnail} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 25vw" />
           {item.source === "youtube" && <span className={styles.sourceBadge}>YouTube</span>}
-          {item.gallery && <span className={styles.processBadge}>{item.gallery.length} views</span>}
+          {item.gallery && (
+            <span className={styles.processBadge}>
+              {item.gallery.length} {item.gallery.length === 1 ? "image" : "images"}
+            </span>
+          )}
         </div>
       ) : (
         <div className={styles.placeholder} aria-hidden="true">
