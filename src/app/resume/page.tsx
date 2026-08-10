@@ -74,7 +74,7 @@ const experience = [
     title: "Freelance Digital Designer / Web Support",
     company: "Freelance",
     location: "Remote",
-    period: "Jun 2023 - Jun 2025",
+    period: "Jan 2024 - Jun 2025",
     summary:
       "Provided project-based digital services after completing my Fairly internship, focusing on practical design, media, and website support for small businesses and individual clients.",
     details: [
