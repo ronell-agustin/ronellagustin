@@ -1,0 +1,71 @@
+name: Cleanup military resume
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-military-resume.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update military resume content
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('src/app/resume/page.tsx')
+          text = path.read_text()
+
+          replacements = {
+              '{ name: "Meritorious Unit Commendation", type: "unit award", detail: "DD214" },': '{ name: "Meritorious Unit Commendation", type: "unit award", detail: "" },',
+              '{ name: "National Defense Service Medal", type: "medal", detail: "DD214" },': '{ name: "National Defense Service Medal", type: "medal", detail: "" },',
+              '{ name: "Global War on Terrorism Service Medal", type: "medal", detail: "DD214" },': '{ name: "Global War on Terrorism Service Medal", type: "medal", detail: "" },',
+              '{ name: "Korea Defense Service Medal", type: "medal", detail: "DD214" },': '{ name: "Korea Defense Service Medal", type: "medal", detail: "" },',
+              '{ name: "Noncommissioned Officer Professional Development Ribbon", type: "ribbon", detail: "DD214" },': '{ name: "Noncommissioned Officer Professional Development Ribbon", type: "ribbon", detail: "" },',
+              '{ name: "Army Service Ribbon", type: "ribbon", detail: "DD214" },': '{ name: "Army Service Ribbon", type: "ribbon", detail: "" },',
+              '{ name: "Expert Marksmanship Badge w/ Rifle Bar", type: "qualification badge", detail: "DD214" },': '{ name: "Expert Marksmanship Badge w/ Rifle Bar", type: "qualification badge", detail: "" },',
+              'detail: "DD214",': 'detail: "",',
+              '{ name: "ENV Compliance OFCR Cert", type: "military education", detail: "1 week · 2010" },': '{ name: "Environmental Compliance Officer Certification" },',
+              '{ name: "FAM MED TAC VEHS TNG", type: "military education", detail: "1 week · 2009" },': '{ name: "Family of Medium Tactical Vehicles Training" },',
+              '{ name: "Small Arms Master Mark", type: "military education", detail: "3 weeks · 2013" },': '{ name: "Small Arms Master Marksman" },',
+              '{ name: "STD Army Maint Sys", type: "military education", detail: "1 week · 2014" },': '{ name: "Standard Army Maintenance System Certification" },',
+              '{ name: "Combatives Level 1", type: "military education", detail: "1 week · 2009" },': '{ name: "Combatives Level 1" },',
+              '{ name: "Warrior Leader Course (WLC)", type: "military education", detail: "2 weeks · 2012" },': '{ name: "Warrior Leader Course (WLC)" },',
+          }
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+
+          old_training = '''          <div className={styles.militaryGroup}>\n            <h3 className={styles.militarySubheading}>militaryTraining[]</h3>\n            <ServiceRecordTable records={militaryTraining} />\n          </div>'''
+          new_training = '''          <div className={styles.militaryGroup}>\n            <h3 className={styles.militarySubheading}>militaryTraining[]</h3>\n            <div className={styles.awardsTable}>\n              {militaryTraining.map((training, index) => (\n                <div className={styles.trainingRow} key={training.name}>\n                  <span>[{String(index).padStart(2, "0")}]</span>\n                  <strong>{training.name}</strong>\n                </div>\n              ))}\n            </div>\n          </div>'''
+          text = text.replace(old_training, new_training)
+
+          path.write_text(text)
+
+      - name: Add training row styles
+        shell: python
+        run: |
+          from pathlib import Path
+          path = Path('src/app/resume/resume.module.css')
+          text = path.read_text()
+          marker = '.awardRow > span:last-child {\n  color: var(--syntax-comment);\n}\n'
+          addition = '''\n.trainingRow {\n  min-height: 58px;\n  display: grid;\n  grid-template-columns: 80px minmax(0, 1fr);\n  gap: 16px;\n  align-items: center;\n  padding: 12px 14px;\n  border-bottom: 1px solid var(--border-default);\n}\n\n.trainingRow:last-child {\n  border-bottom: 0;\n}\n\n.trainingRow span {\n  color: var(--text-secondary);\n  font-size: 0.7rem;\n}\n\n.trainingRow strong {\n  color: var(--syntax-property);\n  font-size: 0.86rem;\n}\n'''
+          if '.trainingRow {' not in text:
+              text = text.replace(marker, marker + addition)
+          path.write_text(text)
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/app/resume/page.tsx src/app/resume/resume.module.css
+          git commit -m "Simplify military training records"
+          git push
