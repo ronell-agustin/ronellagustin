@@ -6,7 +6,7 @@ const resumeSections = [
   { id: "it-skills", index: "01", label: "IT Skills", record: "skills[]" },
   { id: "experience", index: "02", label: "Professional Experience", record: "experience[]" },
   { id: "education", index: "03", label: "Education", record: "education[]" },
-  { id: "military-awards", index: "04", label: "Military Awards & Medals", record: "awards[]" },
+  { id: "military-awards", index: "04", label: "Military Awards & Medals", record: "serviceRecord{}" },
 ];
 
 const technicalSkills = [
@@ -216,22 +216,65 @@ const education = [
 ];
 
 const militaryAwards = [
+  { name: "Army Achievement Medal", type: "decoration", detail: "4th Award" },
+  { name: "Meritorious Unit Commendation", type: "unit award", detail: "DD214" },
+  { name: "Army Good Conduct Medal", type: "medal", detail: "2nd Award" },
+  { name: "National Defense Service Medal", type: "medal", detail: "DD214" },
+  { name: "Global War on Terrorism Service Medal", type: "medal", detail: "DD214" },
+  { name: "Korea Defense Service Medal", type: "medal", detail: "DD214" },
+  { name: "Noncommissioned Officer Professional Development Ribbon", type: "ribbon", detail: "DD214" },
+  { name: "Army Service Ribbon", type: "ribbon", detail: "DD214" },
+  { name: "Overseas Service Ribbon", type: "ribbon", detail: "2nd Award" },
+];
+
+const militaryQualifications = [
+  { name: "Expert Marksmanship Badge w/ Rifle Bar", type: "qualification badge", detail: "DD214" },
   {
-    name: "Global War on Terrorism Service Medal",
-    type: "medal",
-    status: "placeholder",
-  },
-  {
-    name: "Expert Marksmanship Qualification Badge",
+    name: "Driver and Mechanic Badge w/ Driver-Wheeled Vehicle(s) Clasp",
     type: "badge",
-    status: "placeholder",
+    detail: "DD214",
   },
+  { name: "Driver and Mechanic Badge w/ Mechanic Clasp", type: "badge", detail: "DD214" },
   {
-    name: "Driver and Mechanic Badge",
-    type: "badge",
-    status: "placeholder",
+    name: "Schützenschnur — Gold",
+    type: "German military qualification",
+    detail: "Gold",
   },
 ];
+
+const militaryTraining = [
+  { name: "Combatives Level 1", type: "military education", detail: "1 week · 2009" },
+  { name: "ENV Compliance OFCR Cert", type: "military education", detail: "1 week · 2010" },
+  { name: "FAM MED TAC VEHS TNG", type: "military education", detail: "1 week · 2009" },
+  { name: "Small Arms Master Mark", type: "military education", detail: "3 weeks · 2013" },
+  { name: "STD Army Maint Sys", type: "military education", detail: "1 week · 2014" },
+  { name: "Warrior Leader Course (WLC)", type: "military education", detail: "2 weeks · 2012" },
+];
+
+function ServiceRecordTable({
+  records,
+}: {
+  records: { name: string; type: string; detail: string }[];
+}) {
+  return (
+    <div className={styles.awardsTable}>
+      <div className={styles.awardsHeader} aria-hidden="true">
+        <span>index</span>
+        <span>record</span>
+        <span>type</span>
+        <span>detail</span>
+      </div>
+      {records.map((record, index) => (
+        <div className={styles.awardRow} key={`${record.name}-${record.detail}`}>
+          <span>[{String(index).padStart(2, "0")}]</span>
+          <strong>{record.name}</strong>
+          <code>{record.type}</code>
+          <span>{record.detail}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function ResumePage() {
   return (
@@ -376,28 +419,28 @@ export default function ResumePage() {
 
         <section className="resume-section" id="military-awards" aria-labelledby="awards-title">
           <div className="resume-section-heading">
-            <p className="section-label">{"// awards[]"}</p>
+            <p className="section-label">{"// serviceRecord{}"}</p>
             <div>
               <h2 id="awards-title">Military Awards & Medals.</h2>
-              <p className={styles.placeholderNote}>Temporary entries — full service awards record coming next.</p>
+              <p className={styles.placeholderNote}>
+                Decorations, qualifications, and formal military education from my service record, with the Schützenschnur Gold qualification added from German military training.
+              </p>
             </div>
           </div>
 
-          <div className={styles.awardsTable}>
-            <div className={styles.awardsHeader} aria-hidden="true">
-              <span>index</span>
-              <span>award</span>
-              <span>type</span>
-              <span>status</span>
-            </div>
-            {militaryAwards.map((award, index) => (
-              <div className={styles.awardRow} key={award.name}>
-                <span>[{String(index).padStart(2, "0")}]</span>
-                <strong>{award.name}</strong>
-                <code>{award.type}</code>
-                <span>{award.status}</span>
-              </div>
-            ))}
+          <div className={styles.militaryGroup}>
+            <h3 className={styles.militarySubheading}>awards[]</h3>
+            <ServiceRecordTable records={militaryAwards} />
+          </div>
+
+          <div className={styles.militaryGroup}>
+            <h3 className={styles.militarySubheading}>qualifications[]</h3>
+            <ServiceRecordTable records={militaryQualifications} />
+          </div>
+
+          <div className={styles.militaryGroup}>
+            <h3 className={styles.militarySubheading}>militaryTraining[]</h3>
+            <ServiceRecordTable records={militaryTraining} />
           </div>
         </section>
 
