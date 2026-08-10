@@ -1,0 +1,42 @@
+name: Move portfolio assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'portfolio/**'
+      - '.github/workflows/move-portfolio-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  move-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Move portfolio into public
+        shell: bash
+        run: |
+          if [ -d portfolio ]; then
+            mkdir -p public/portfolio
+            cp -a portfolio/. public/portfolio/
+            git rm -r portfolio
+          fi
+
+      - name: Commit moved assets
+        shell: bash
+        run: |
+          if git diff --quiet --cached && git diff --quiet; then
+            echo "No portfolio assets to move."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/portfolio
+          git commit -m "Move portfolio assets into public directory"
+          git push
