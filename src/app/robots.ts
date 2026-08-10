@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://ronellagustin.com/sitemap.xml",
+    sitemap: "https://www.ronellagustin.com/sitemap.xml",
   };
 }
