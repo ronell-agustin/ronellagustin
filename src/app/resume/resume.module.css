@@ -7,7 +7,7 @@
 
 .returnLink {
   display: inline-block;
-  margin-bottom: 18px;
+  margin: 0 0 14px;
   color: var(--syntax-control);
   font-size: 0.72rem;
   font-weight: 600;
@@ -33,12 +33,12 @@
 }
 
 .kicker::after {
-  content: " = []";
+  content: " = {}";
   color: var(--syntax-property);
 }
 
 .intro h1 {
-  max-width: 900px;
+  max-width: 980px;
   margin: 0;
   color: var(--text-primary);
   font-size: clamp(2rem, 4.5vw, 4rem);
@@ -49,7 +49,7 @@
 }
 
 .copy {
-  max-width: 780px;
+  max-width: 760px;
   margin: 22px 0 0;
   color: var(--text-secondary);
   font-size: clamp(0.98rem, 1.5vw, 1.18rem);
@@ -73,33 +73,28 @@
 }
 
 .queryBar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  padding: 12px 14px;
+  padding: 10px 14px;
   color: var(--text-secondary);
   background: var(--surface-panel);
   border-bottom: 1px solid var(--border-default);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
 }
 
 .queryKeyword {
   color: var(--syntax-keyword);
-  font-weight: 700;
 }
 
 .tableHeader,
 .tableRow {
   display: grid;
-  grid-template-columns: 70px minmax(0, 1.5fr) minmax(140px, 0.8fr) 56px;
+  grid-template-columns: 80px minmax(220px, 1.4fr) minmax(160px, 0.8fr) 60px;
   gap: 16px;
   align-items: center;
 }
 
 .tableHeader {
-  padding: 8px 14px;
+  padding: 9px 14px;
   color: var(--text-tertiary);
-  background: var(--surface-page);
   border-bottom: 1px solid var(--border-default);
   font-size: 0.62rem;
   text-transform: uppercase;
@@ -107,12 +102,11 @@
 }
 
 .tableRow {
-  min-height: 52px;
-  padding: 10px 14px;
-  color: var(--text-secondary);
+  min-height: 58px;
+  padding: 12px 14px;
+  color: inherit;
   border-bottom: 1px solid var(--border-default);
   text-decoration: none;
-  transition: background 120ms ease, color 120ms ease;
 }
 
 .tableRow:last-child {
@@ -121,14 +115,19 @@
 
 .tableRow:hover,
 .tableRow:focus-visible {
-  color: var(--text-primary);
   background: var(--interactive-hover);
   outline: none;
 }
 
+.tableRow > span:first-child,
+.tableRow > span:last-child {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+}
+
 .tableRow strong {
   color: var(--syntax-property);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
 }
 
 .tableRow code {
@@ -137,16 +136,10 @@
   font-size: 0.72rem;
 }
 
-.tableRow span:last-child {
-  justify-self: end;
-  color: var(--syntax-control);
-  font-size: 1rem;
-}
-
 .skillArrays {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 
 .skillArray {
@@ -158,33 +151,33 @@
 
 .arrayTitle {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
   align-items: baseline;
   color: var(--text-secondary);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
 }
 
 .arrayKeyword {
   color: var(--syntax-keyword);
-  font-weight: 700;
 }
 
 .arrayTitle strong {
-  color: var(--syntax-type);
-  font-size: 0.92rem;
+  color: var(--syntax-property);
+  font-size: 0.88rem;
 }
 
 .arrayValues {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 7px;
-  padding: 16px 0 12px 20px;
+  padding: 13px 0 13px 18px;
 }
 
 .arrayValues span {
   color: var(--syntax-string);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .arrayClose {
@@ -193,7 +186,7 @@
 }
 
 .placeholderNote {
-  max-width: 620px;
+  max-width: 720px;
   margin: 18px 0 0;
   color: var(--syntax-comment);
   font-size: 0.8rem;
@@ -208,6 +201,31 @@
   content: " */";
 }
 
+.militaryGroup {
+  margin-top: 28px;
+}
+
+.militaryGroup:first-of-type {
+  margin-top: 0;
+}
+
+.militarySubheading {
+  margin: 0 0 10px;
+  color: var(--syntax-type);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.militarySubheading::before {
+  content: "const ";
+  color: var(--syntax-keyword);
+}
+
+.militarySubheading::after {
+  content: " = [ ];";
+  color: var(--text-secondary);
+}
+
 .awardsTable {
   border: 1px solid var(--border-default);
   background: var(--surface-recessed);
@@ -216,7 +234,7 @@
 .awardsHeader,
 .awardRow {
   display: grid;
-  grid-template-columns: 80px minmax(0, 1.6fr) minmax(110px, 0.6fr) minmax(110px, 0.6fr);
+  grid-template-columns: 80px minmax(0, 1.6fr) minmax(110px, 0.7fr) minmax(120px, 0.6fr);
   gap: 16px;
   align-items: center;
 }
@@ -256,6 +274,7 @@
   color: var(--syntax-type);
   font: inherit;
   font-size: 0.72rem;
+  overflow-wrap: anywhere;
 }
 
 .awardRow > span:last-child {
@@ -310,6 +329,6 @@
 
   .awardsHeader,
   .awardRow {
-    min-width: 660px;
+    min-width: 700px;
   }
 }
