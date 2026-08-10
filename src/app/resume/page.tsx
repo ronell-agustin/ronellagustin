@@ -217,22 +217,22 @@ const education = [
 
 const militaryAwards = [
   { name: "Army Achievement Medal", type: "decoration", detail: "4th Award" },
-  { name: "Meritorious Unit Commendation", type: "unit award", detail: "DD214" },
+  { name: "Meritorious Unit Commendation", type: "unit award", detail: "" },
   { name: "Army Good Conduct Medal", type: "medal", detail: "2nd Award" },
-  { name: "National Defense Service Medal", type: "medal", detail: "DD214" },
-  { name: "Global War on Terrorism Service Medal", type: "medal", detail: "DD214" },
-  { name: "Korea Defense Service Medal", type: "medal", detail: "DD214" },
-  { name: "Noncommissioned Officer Professional Development Ribbon", type: "ribbon", detail: "DD214" },
-  { name: "Army Service Ribbon", type: "ribbon", detail: "DD214" },
+  { name: "National Defense Service Medal", type: "medal", detail: "" },
+  { name: "Global War on Terrorism Service Medal", type: "medal", detail: "" },
+  { name: "Korea Defense Service Medal", type: "medal", detail: "" },
+  { name: "Noncommissioned Officer Professional Development Ribbon", type: "ribbon", detail: "" },
+  { name: "Army Service Ribbon", type: "ribbon", detail: "" },
   { name: "Overseas Service Ribbon", type: "ribbon", detail: "2nd Award" },
 ];
 
 const militaryQualifications = [
-  { name: "Expert Marksmanship Badge w/ Rifle Bar", type: "qualification badge", detail: "DD214" },
+  { name: "Expert Marksmanship Badge w/ Rifle Bar", type: "qualification badge", detail: "" },
   {
     name: "Driver and Mechanic Badge w/ Driver-Wheeled Vehicle(s) Clasp",
     type: "badge",
-    detail: "DD214",
+    detail: "",
   },
   { name: "Driver and Mechanic Badge w/ Mechanic Clasp", type: "badge", detail: "DD214" },
   {
@@ -243,12 +243,12 @@ const militaryQualifications = [
 ];
 
 const militaryTraining = [
-  { name: "Combatives Level 1", type: "military education", detail: "1 week · 2009" },
-  { name: "ENV Compliance OFCR Cert", type: "military education", detail: "1 week · 2010" },
-  { name: "FAM MED TAC VEHS TNG", type: "military education", detail: "1 week · 2009" },
-  { name: "Small Arms Master Mark", type: "military education", detail: "3 weeks · 2013" },
-  { name: "STD Army Maint Sys", type: "military education", detail: "1 week · 2014" },
-  { name: "Warrior Leader Course (WLC)", type: "military education", detail: "2 weeks · 2012" },
+  { name: "Combatives Level 1" },
+  { name: "Environmental Compliance Officer Certification" },
+  { name: "Family of Medium Tactical Vehicles Training" },
+  { name: "Small Arms Master Marksman" },
+  { name: "Standard Army Maintenance System Certification" },
+  { name: "Warrior Leader Course (WLC)" },
 ];
 
 function ServiceRecordTable({
@@ -440,7 +440,14 @@ export default function ResumePage() {
 
           <div className={styles.militaryGroup}>
             <h3 className={styles.militarySubheading}>militaryTraining[]</h3>
-            <ServiceRecordTable records={militaryTraining} />
+            <div className={styles.awardsTable}>
+              {militaryTraining.map((training, index) => (
+                <div className={styles.trainingRow} key={training.name}>
+                  <span>[{String(index).padStart(2, "0")}]</span>
+                  <strong>{training.name}</strong>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

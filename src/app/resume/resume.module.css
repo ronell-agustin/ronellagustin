@@ -281,6 +281,30 @@
   color: var(--syntax-comment);
 }
 
+.trainingRow {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.trainingRow:last-child {
+  border-bottom: 0;
+}
+
+.trainingRow span {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+}
+
+.trainingRow strong {
+  color: var(--syntax-property);
+  font-size: 0.86rem;
+}
+
 @media (max-width: 700px) {
   .intro {
     width: min(100% - 36px, 1240px);
