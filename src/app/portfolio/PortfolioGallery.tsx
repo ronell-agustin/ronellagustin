@@ -32,12 +32,12 @@ const artItems: PortfolioItem[] = [
     category: "art",
     tags: ["art", "illustration", "character-design", "ai-assisted"],
     year: "2013 / 2026",
-    thumbnail: "/portfolio/art/grimReaperFlag_AI_Finish.jpg",
+    thumbnail: "/portfolio/art/grimReaperFlag_AI.jpg",
     description:
       "An original battlefield concept from 2013: the Grim Reaper carries an American flag to present to the soldier he comes to collect. Revisited in 2026 through an AI-assisted finishing workflow.",
     gallery: [
       { label: "Original concept", src: "/portfolio/art/grimReaperFlag.jpg" },
-      { label: "AI-assisted finish", src: "/portfolio/art/grimReaperFlag_AI_Finish.jpg" },
+      { label: "AI-assisted finish", src: "/portfolio/art/grimReaperFlag_AI.jpg" },
     ],
   },
   {
@@ -89,13 +89,13 @@ const artItems: PortfolioItem[] = [
     category: "art",
     tags: ["art", "fan-art", "illustration", "process", "ai-assisted"],
     year: "2020 / 2026",
-    thumbnail: "/portfolio/art/protag_Feast_AI_Finish.jpg",
+    thumbnail: "/portfolio/art/protag_Feast_AIFinish.jpg",
     description:
       "A large crossover fan-art composition showing the progression from line drawing to hand-colored artwork and a later AI-assisted cleanup with additional table detail.",
     gallery: [
       { label: "Draft linework", src: "/portfolio/art/protag_Feast_DRAFT.jpg" },
       { label: "Hand-colored version", src: "/portfolio/art/protag_Feast_DRAFT2.jpg" },
-      { label: "AI-assisted cleanup", src: "/portfolio/art/protag_Feast_AI_Finish.jpg" },
+      { label: "AI-assisted cleanup", src: "/portfolio/art/protag_Feast_AIFinish.jpg" },
     ],
   },
 ];
