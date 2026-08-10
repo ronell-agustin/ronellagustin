@@ -473,15 +473,15 @@ button.card:focus-visible {
   z-index: 50;
   display: grid;
   place-items: center;
-  padding: 30px;
+  padding: 24px;
   background: var(--surface-recessed);
 }
 
 .viewer {
-  width: min(1180px, 100%);
-  max-height: calc(100vh - 60px);
+  width: min(1400px, 100%);
+  height: min(920px, calc(100vh - 48px));
   display: grid;
-  grid-template-rows: auto minmax(260px, 1fr) auto auto;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
   overflow: hidden;
   background: var(--surface-page);
   border: 1px solid var(--border-emphasis);
@@ -542,6 +542,7 @@ button.card:focus-visible {
 .viewerImage {
   position: relative;
   min-height: 0;
+  overflow: hidden;
   background: var(--surface-recessed);
 }
 
@@ -618,6 +619,10 @@ button.card:focus-visible {
   color: var(--text-primary);
   background: var(--surface-page);
   border-bottom-color: var(--interactive-primary);
+}
+
+.viewerThumbs .activeThumb span {
+  color: var(--syntax-string);
 }
 
 @media (max-width: 1000px) {
@@ -725,17 +730,12 @@ button.card:focus-visible {
   }
 
   .viewerBackdrop {
-    padding: 12px;
+    padding: 10px;
   }
 
   .viewer {
-    max-height: calc(100vh - 24px);
-    grid-template-rows: auto minmax(220px, 1fr) auto auto;
-  }
-
-  .viewerTitlebar > div {
-    flex-direction: column;
-    gap: 2px;
+    width: 100%;
+    height: calc(100vh - 20px);
   }
 
   .viewerInfo {
