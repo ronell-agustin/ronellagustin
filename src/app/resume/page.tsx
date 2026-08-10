@@ -234,7 +234,7 @@ const militaryQualifications = [
     type: "badge",
     detail: "",
   },
-  { name: "Driver and Mechanic Badge w/ Mechanic Clasp", type: "badge", detail: "DD214" },
+  { name: "Driver and Mechanic Badge w/ Mechanic Clasp", type: "badge", detail: "" },
   {
     name: "Schützenschnur — Gold",
     type: "German military qualification",
