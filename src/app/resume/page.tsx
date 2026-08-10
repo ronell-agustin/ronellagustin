@@ -92,8 +92,8 @@ const experience = [
     summary:
       "Managed a retail and ecommerce operation spanning inventory, warehousing, staffing, sales, marketing, and process improvement.",
     details: [
-      "Managed inventory databases containing more than 500,000 line items and ecommerce logistics.",
-      "Oversaw a warehouse valued above $1 million and led hiring, training, and operations for 25+ employees.",
+      "Managed inventory databases containing more than 20,000 line items and ecommerce logistics.",
+      "Oversaw inventory valued at approximately $80,000 at peak and led hiring, training, and operations for 25+ employees.",
       "Directed social media, website, multimedia, B2B/B2C sales, and marketing strategy.",
       "Continuously improved business processes while supporting customer service, fulfillment, and day-to-day operations.",
     ],
