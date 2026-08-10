@@ -1,24 +1,59 @@
-# Ronell Agustin
+# ronellagustin.com
 
-Source repository for **ronellagustin.com** — my personal portfolio, resume, and professional home on the web.
+Source repository for **ronellagustin.com**, the personal portfolio and interactive resume of Ronell Agustin.
 
-## Purpose
+## Site
 
-This site will showcase my work across software development, web development, digital marketing, technical projects, and other professional experience.
+The site uses an IDE / code-editor visual language and presents four primary areas:
 
-The repository will grow alongside the site and serve as the source of truth for the portfolio's code, project highlights, skills, tools, and professional information.
+- **Home** — selected professional work and site navigation
+- **Work** — commercial web, ecommerce, agency, and publishing work
+- **Portfolio** — illustration, photography, videography, and 3D environment design
+- **Resume** — IT skills, professional experience, education, and military service record
 
-## Planned Content
+The creative portfolio includes original-art process galleries with transparent AI-assisted finishing workflows, a Unity-based dream-house case study, curated photography, and a live YouTube feed from The Home Base PH.
 
-- Professional profile and resume
-- Selected development and web projects
-- EZDigital work and case studies
-- Technical skills and tools
-- Project demos
-- Contact information
+## Stack
 
-## Development
+- Next.js 16
+- React 19
+- TypeScript
+- CSS Modules and shared CSS design tokens
+- Tailwind CSS 4 / PostCSS tooling
+- Vercel
+- YouTube Data API v3
 
-The implementation stack and deployment workflow will be documented as the project develops.
+The site intentionally does not use a database. Most content is maintained directly in the repository; YouTube data is fetched server-side and periodically revalidated.
 
-See [`docs/TOOLS_AND_APPS.md`](docs/TOOLS_AND_APPS.md) for tools and applications used in my workflow.
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Production checks:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Environment variables
+
+Copy `.env.example` when local YouTube integration is needed.
+
+- `YOUTUBE_API_KEY` — required for live YouTube channel/video data
+- `YOUTUBE_HANDLE` — optional handle override
+- `YOUTUBE_CHANNEL_ID` — optional channel ID override
+- `YOUTUBE_UPLOADS_PLAYLIST_ID` — optional uploads-playlist override
+
+The API key is server-side and should be configured in Vercel for deployed environments.
+
+## Deployment
+
+The `main` branch deploys through Vercel. Static creative assets live under `public/portfolio/`, including the site favicon.
+
+## Repository notes
+
+This repository is the source of truth for the public portfolio, resume, project descriptions, creative-work metadata, and site implementation.
