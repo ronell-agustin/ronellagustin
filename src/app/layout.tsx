@@ -3,7 +3,7 @@ import ScrollToTop from "./ScrollToTop";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ronellagustin.com"),
+  metadataBase: new URL("https://www.ronellagustin.com"),
   title: {
     default: "Ronell Agustin | Portfolio & Resume",
     template: "%s | Ronell Agustin",
