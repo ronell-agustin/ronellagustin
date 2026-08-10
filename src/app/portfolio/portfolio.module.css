@@ -298,11 +298,19 @@
   min-width: 0;
   display: block;
   overflow: hidden;
+  padding: 0;
   color: inherit;
   background: var(--surface-recessed);
   border: 1px solid var(--border-default);
+  text-align: left;
   text-decoration: none;
+  font: inherit;
+  cursor: pointer;
   transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+}
+
+article.card {
+  cursor: default;
 }
 
 .card:hover,
@@ -313,7 +321,9 @@
 }
 
 .card[href]:hover,
-.card[href]:focus-visible {
+.card[href]:focus-visible,
+button.card:hover,
+button.card:focus-visible {
   transform: translateY(-2px);
 }
 
@@ -336,9 +346,9 @@
   object-fit: cover;
 }
 
-.sourceBadge {
+.sourceBadge,
+.processBadge {
   position: absolute;
-  right: 9px;
   bottom: 9px;
   padding: 4px 6px;
   color: var(--text-primary);
@@ -348,6 +358,14 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.sourceBadge {
+  right: 9px;
+}
+
+.processBadge {
+  left: 9px;
 }
 
 .placeholder {
@@ -427,6 +445,13 @@
   font-weight: 500;
 }
 
+.cardDescription {
+  margin: 10px 14px 0;
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -440,6 +465,159 @@
   padding: 3px 6px;
   background: var(--surface-page);
   border: 1px solid var(--border-default);
+}
+
+.viewerBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  background: var(--surface-recessed);
+}
+
+.viewer {
+  width: min(1180px, 100%);
+  max-height: calc(100vh - 60px);
+  display: grid;
+  grid-template-rows: auto minmax(260px, 1fr) auto auto;
+  overflow: hidden;
+  background: var(--surface-page);
+  border: 1px solid var(--border-emphasis);
+  box-shadow: var(--shadow-panel);
+}
+
+.viewerTitlebar {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--surface-panel);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.viewerTitlebar > div {
+  min-width: 0;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.viewerTitlebar span {
+  color: var(--syntax-keyword);
+  font-size: 0.65rem;
+}
+
+.viewerTitlebar strong {
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.viewerTitlebar button {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.25rem;
+}
+
+.viewerTitlebar button:hover,
+.viewerTitlebar button:focus-visible {
+  color: var(--text-primary);
+  background: var(--interactive-hover);
+  border-color: var(--border-default);
+  outline: none;
+}
+
+.viewerImage {
+  position: relative;
+  min-height: 0;
+  background: var(--surface-recessed);
+}
+
+.viewerImage img {
+  object-fit: contain;
+}
+
+.viewerInfo {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);
+  gap: 28px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--border-default);
+}
+
+.viewerInfo > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.viewerInfo span {
+  color: var(--text-secondary);
+  font-size: 0.62rem;
+}
+
+.viewerInfo strong {
+  color: var(--syntax-property);
+  font-size: 0.78rem;
+}
+
+.viewerInfo p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.viewerThumbs {
+  display: flex;
+  overflow-x: auto;
+  border-top: 1px solid var(--border-default);
+  background: var(--surface-panel);
+}
+
+.viewerThumbs button {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--border-default);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.66rem;
+}
+
+.viewerThumbs button:hover,
+.viewerThumbs button:focus-visible {
+  color: var(--text-primary);
+  background: var(--interactive-hover);
+  outline: none;
+}
+
+.viewerThumbs button span {
+  color: var(--syntax-comment);
+}
+
+.viewerThumbs .activeThumb {
+  color: var(--text-primary);
+  background: var(--surface-page);
+  border-bottom-color: var(--interactive-primary);
 }
 
 @media (max-width: 1000px) {
@@ -544,5 +722,30 @@
 
   .tags {
     padding: 12px 14px 16px;
+  }
+
+  .viewerBackdrop {
+    padding: 12px;
+  }
+
+  .viewer {
+    max-height: calc(100vh - 24px);
+    grid-template-rows: auto minmax(220px, 1fr) auto auto;
+  }
+
+  .viewerTitlebar > div {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .viewerInfo {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .viewerThumbs button {
+    padding: 9px 10px;
+    font-size: 0.62rem;
   }
 }
