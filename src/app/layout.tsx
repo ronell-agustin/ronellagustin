@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import ScrollToTop from "./ScrollToTop";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ronellagustin.com"),
@@ -57,6 +56,7 @@ export default function RootLayout({
       <body>
         {children}
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );
